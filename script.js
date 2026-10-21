@@ -21,6 +21,15 @@ const PAINTINGS = [
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/* Copyright mark laid over every painting (decorative, so hidden from screen readers) */
+function makeWatermark() {
+  const mark = document.createElement('span');
+  mark.className = 'watermark';
+  mark.setAttribute('aria-hidden', 'true');
+  mark.textContent = '© Phren Lhantom';
+  return mark;
+}
+
 /* ---------- Gallery ---------- */
 
 function buildGallery() {
@@ -52,7 +61,7 @@ function buildGallery() {
     img.addEventListener('load', () => figure.classList.add('has-image'));
     img.addEventListener('error', () => img.remove());
 
-    art.append(placeholder, img);
+    art.append(placeholder, img, makeWatermark());
 
     const caption = document.createElement('figcaption');
     caption.className = 'piece__caption';
@@ -98,6 +107,7 @@ function openLightbox(piece, p) {
     placeholder.classList.add('lightbox__placeholder');
     art.replaceChildren(placeholder);
   }
+  art.append(makeWatermark());
 
   box.querySelector('.lightbox__title').textContent = p.title;
   box.querySelector('.lightbox__meta').textContent = `${p.year} · ${p.medium} · ${p.size}`;
@@ -115,6 +125,15 @@ function setUpLightbox() {
   });
   // A tap anywhere (or the close button, or Escape) closes it.
   box.addEventListener('click', () => box.close());
+}
+
+/* Discourage saving paintings by right-click or dragging (a deterrent, not a lock) */
+function setUpImageGuard() {
+  ['contextmenu', 'dragstart'].forEach((type) => {
+    document.addEventListener(type, (e) => {
+      if (e.target.closest('.piece, .lightbox__art')) e.preventDefault();
+    });
+  });
 }
 
 /* ---------- Scroll reveal ---------- */
@@ -232,6 +251,7 @@ function setUpForms() {
 
 buildGallery();
 setUpLightbox();
+setUpImageGuard();
 setUpReveal();
 setUpHalo();
 setUpTapLight();
