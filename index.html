@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phren Lhantom — Paintings</title>
+  <meta name="description" content="Paintings by Phren Lhantom. View the work, request a commission, or get in touch.">
+  <meta name="theme-color" content="#0a0a0b">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="site">
+    <!-- Atmosphere: drifting fog and cursor halo (decorative) -->
+    <div class="fog" aria-hidden="true">
+      <div class="fog__blob fog__blob--a"></div>
+      <div class="fog__blob fog__blob--b"></div>
+      <div class="fog__vignette"></div>
+    </div>
+    <div class="halo" aria-hidden="true"></div>
+
+    <div class="content">
+      <nav class="nav" aria-label="Main">
+        <div class="nav__links">
+          <a href="#about">About</a>
+          <a href="#work">Gallery</a>
+          <a href="#contact">Contact</a>
+          <a class="nav__icon" href="https://www.instagram.com/lhantom_art/" target="_blank" rel="noopener" aria-label="Instagram (opens in a new tab)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"></circle>
+            </svg>
+          </a>
+        </div>
+      </nav>
+
+      <header class="hero reveal reveal--hero">
+        <h1 class="hero__name">Phren Lhantom</h1>
+      </header>
+
+      <main id="main">
+        <section id="about" class="about reveal" aria-labelledby="about-title">
+          <h2 id="about-title" class="script-title">About</h2>
+          <p>Through oil painting, I am capturing the body as light, ever enamoured, lingers upon it in the gloaming.</p>
+        </section>
+
+        <section id="work" class="gallery" aria-labelledby="work-title">
+          <h2 id="work-title" class="visually-hidden">Gallery</h2>
+          <!-- Paintings are listed in script.js -->
+          <div class="gallery__grid"></div>
+          <noscript><p class="gallery__noscript">Turn on JavaScript to view the paintings.</p></noscript>
+        </section>
+
+        <section id="contact" class="form-section form-section--last reveal" aria-labelledby="contact-title">
+          <div class="form-section__intro">
+            <h2 id="contact-title" class="script-title script-title--tight">Contact &amp; Commission</h2>
+            <p>Enquiries about available paintings, or a request for an original commission. For a commission, share the size, subject, and timeline you have in mind.</p>
+          </div>
+          <form class="form" action="https://formspree.io/f/mjygnazv" method="POST">
+            <input type="hidden" name="_subject" value="Website enquiry">
+            <label class="visually-hidden" for="m-name">Name</label>
+            <input id="m-name" name="name" placeholder="Name" autocomplete="name" required>
+            <label class="visually-hidden" for="m-email">Email</label>
+            <input id="m-email" name="email" type="email" placeholder="Email" autocomplete="email" required>
+            <label class="visually-hidden" for="m-size">Approximate size, for commissions (optional)</label>
+            <input id="m-size" name="size" placeholder="Approximate size (for commissions)">
+            <label class="visually-hidden" for="m-message">Message</label>
+            <textarea id="m-message" name="message" rows="5" placeholder="Message" required></textarea>
+            <button type="submit">Send message</button>
+            <p class="form__status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>© 2026 Phren Lhantom</span>
+        <a href="https://www.instagram.com/lhantom_art/" target="_blank" rel="noopener">Instagram<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

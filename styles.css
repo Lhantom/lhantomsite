@@ -1,0 +1,521 @@
+/* Phren Lhantom — single-page portfolio */
+
+:root {
+  --bg: #0a0a0b;
+  --text: #d8d5cf;
+  --bright: #ece9e3;
+  --muted: #5e5d5b;
+  --field-border: rgba(216, 213, 207, .14);
+  --field-border-focus: rgba(216, 213, 207, .45);
+  --field-fill: rgba(255, 255, 255, .025);
+  --button-bg: rgba(236, 233, 227, .9);
+
+  --script: 'Italianno', cursive;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --pagepad: clamp(24px, 7vw, 96px);
+  --focus-ring: 1px solid rgba(236, 233, 227, .7);
+}
+
+/* ---------- Base ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity .6s ease;
+}
+a:hover { opacity: .5; }
+
+input, textarea, button { font: inherit; color: inherit; }
+
+input::placeholder, textarea::placeholder { color: var(--text); opacity: .4; }
+
+/* Ghost cursor; form fields keep the normal text cursor */
+html, body, a, button, figure, figure * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='32' viewBox='0 0 28 32'%3E%3Cpath d='M5 15a9 9 0 0 1 18 0v13l-3-2.3-3 2.3-3-2.3-3 2.3-3-2.3-3 2.3z' fill='%23ecebe7' fill-opacity='.88' stroke='%230a0a0b' stroke-width='1.3' stroke-linejoin='round'/%3E%3Ccircle cx='11' cy='14' r='1.5' fill='%230a0a0b'/%3E%3Ccircle cx='17' cy='14' r='1.5' fill='%230a0a0b'/%3E%3C/svg%3E") 14 6, auto !important;
+}
+input, textarea { cursor: text; }
+
+/* Keyboard focus */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 10;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--bright);
+  color: var(--bg);
+  font-style: italic;
+}
+.skip-link:focus { top: 16px; }
+.skip-link:hover { opacity: 1; }
+
+/* ---------- Layout ---------- */
+
+.site {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Atmosphere ---------- */
+
+.fog {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  animation: breathe 14s ease-in-out infinite;
+}
+
+.fog__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+.fog__blob--a {
+  width: 70vw;
+  height: 60vh;
+  left: -15vw;
+  top: -10vh;
+  background: rgba(190, 192, 200, .07);
+  animation: drift1 40s ease-in-out infinite;
+}
+.fog__blob--b {
+  width: 60vw;
+  height: 55vh;
+  right: -20vw;
+  bottom: -5vh;
+  background: rgba(170, 172, 182, .06);
+  animation: drift2 52s ease-in-out infinite;
+}
+.fog__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0, 0, 0, .55) 100%);
+}
+
+.halo {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(225, 225, 235, .10) 0%, rgba(225, 225, 235, .05) 30%, rgba(225, 225, 235, 0) 65%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: translate(-9999px, -9999px);
+  transition: opacity 1.2s ease;
+}
+.halo:not(.is-enabled) { display: none; }
+
+@keyframes drift1 {
+  0%, 100% { transform: translate(-10%, -5%) scale(1); }
+  50%      { transform: translate(8%, 6%) scale(1.15); }
+}
+@keyframes drift2 {
+  0%, 100% { transform: translate(6%, 4%) scale(1.1); }
+  50%      { transform: translate(-8%, -6%) scale(.95); }
+}
+@keyframes breathe {
+  0%, 100% { opacity: .85; }
+  50%      { opacity: 1; }
+}
+@keyframes haunt {
+  0%, 100% { opacity: .5; transform: translateY(0); filter: blur(.8px); }
+  50%      { opacity: .95; transform: translateY(-8px); filter: blur(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ---------- Scroll reveal (only when JS is running) ---------- */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(10px);
+  transition: opacity 1.8s ease, transform 1.8s ease, filter 1.8s ease;
+}
+.js .reveal--hero { transition-duration: 2.2s; }
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* ---------- Nav ---------- */
+
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  padding: 28px var(--pagepad);
+  font-size: 17px;
+  font-style: italic;
+}
+
+.nav__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 24px;
+}
+.nav__links a {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  padding: clamp(48px, 10vw, 140px) var(--pagepad) clamp(40px, 7vw, 96px);
+  text-align: center;
+}
+
+.hero__name {
+  margin: 0;
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(40px, 13.1vw, 165px);
+  line-height: 1.1;
+  background: linear-gradient(100deg,
+    rgba(220, 217, 211, .25) 0%,
+    rgba(240, 238, 234, .95) 25%,
+    rgba(220, 217, 211, .25) 50%,
+    rgba(240, 238, 234, .95) 75%,
+    rgba(220, 217, 211, .25) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  will-change: transform, opacity;
+  animation: haunt 7s ease-in-out infinite, shimmer 14s linear infinite;
+}
+
+/* ---------- Section titles ---------- */
+
+.script-title {
+  margin: 0 0 12px;
+  font-family: var(--script);
+  font-weight: 400;
+  /* Smaller than the name on phones, so the name stays the focus */
+  font-size: clamp(40px, 11vw, 81px);
+  line-height: 1.1;
+  text-align: center;
+  /* Fainter than the name, for the same reason */
+  background: linear-gradient(100deg, rgba(236, 233, 227, .1), rgba(236, 233, 227, .38) 45%, rgba(236, 233, 227, .1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: blur(.5px);
+}
+.script-title--tight { margin-bottom: 8px; }
+
+/* ---------- About ---------- */
+
+.about {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 64px) var(--pagepad) clamp(64px, 10vw, 140px);
+  text-align: center;
+}
+.about p {
+  margin: 0;
+  font-size: clamp(19px, 2vw, 21px);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+/* ---------- Gallery ---------- */
+
+.gallery {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 7vw, 96px);
+}
+
+.gallery__grid {
+  columns: 2 300px;
+  column-gap: clamp(24px, 5vw, 72px);
+}
+
+.gallery__noscript { text-align: center; opacity: .7; }
+
+.piece {
+  position: relative;
+  margin: 0 0 clamp(28px, 5vw, 72px);
+  break-inside: avoid;
+  border-radius: 18px;
+  overflow: hidden;
+  /* Keeps rounded corners clipping the scaled image in Safari */
+  isolation: isolate;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .8), 0 0 60px -10px rgba(200, 200, 210, .03);
+  transition: box-shadow 1s ease;
+}
+.js .piece.reveal {
+  transition: opacity 1.6s ease, transform 1.6s ease, filter 1.6s ease, box-shadow 1s ease;
+}
+.piece:focus-visible { outline-offset: 6px; border-radius: 18px; }
+
+.piece__art {
+  position: relative;
+  transition: transform 1.4s ease;
+}
+
+.piece__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 40%, #1c1c1f, #121214);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* The image sits over the placeholder until it loads, then takes its natural ratio */
+.piece__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+.piece.has-image .piece__placeholder { display: none; }
+.piece.has-image .piece__img {
+  position: static;
+  display: block;
+  height: auto;
+  opacity: 1;
+}
+
+.piece__caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+  padding: 28px;
+  background: linear-gradient(to top, rgba(8, 8, 9, .88), rgba(8, 8, 9, 0) 55%);
+  opacity: 0;
+  transition: opacity .9s ease;
+}
+.piece__title {
+  font-size: 24px;
+  font-style: italic;
+  color: var(--bright);
+}
+.piece__meta {
+  font-size: 16px;
+  opacity: .75;
+}
+
+/* Details: hover (mouse), keyboard focus, or tap (.is-open) */
+.piece.is-open .piece__caption,
+.piece:focus-visible .piece__caption { opacity: 1; }
+.piece.is-open .piece__art,
+.piece:focus-visible .piece__art { transform: scale(1.03); }
+.piece.is-open,
+.piece:focus-visible {
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .8), 0 0 60px -10px rgba(200, 200, 210, .12);
+}
+
+@media (hover: hover) {
+  .piece:hover .piece__caption { opacity: 1; }
+  .piece:hover .piece__art { transform: scale(1.03); }
+  .piece:hover {
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .8), 0 0 60px -10px rgba(200, 200, 210, .12);
+  }
+}
+
+/* ---------- Forms ---------- */
+
+.form-section {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: clamp(40px, 9vw, 128px) var(--pagepad) clamp(64px, 10vw, 140px);
+}
+.form-section--last { padding-bottom: clamp(80px, 12vw, 160px); }
+
+.form-section__intro {
+  margin-bottom: 32px;
+  text-align: center;
+}
+.form-section__intro p {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.6;
+  opacity: .7;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  border: 1px solid var(--field-border);
+  border-radius: 999px;
+  background: var(--field-fill);
+  padding: 14px 22px;
+  font-size: 18px;
+  outline: none;
+  transition: border-color .6s ease, box-shadow .6s ease;
+}
+.form textarea {
+  border-radius: 24px;
+  padding: 16px 22px;
+  resize: vertical;
+}
+.form input:focus,
+.form textarea:focus {
+  border-color: var(--field-border-focus);
+}
+/* A soft extra ring so keyboard users can find the field */
+.form input:focus-visible,
+.form textarea:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(236, 233, 227, .08);
+}
+
+.form button {
+  align-self: center;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 44px;
+  background: var(--button-bg);
+  color: var(--bg);
+  font-size: 19px;
+  font-style: italic;
+  box-shadow: 0 0 40px rgba(236, 233, 227, .12);
+  transition: box-shadow .8s ease, background .8s ease;
+}
+.form button:hover {
+  background: var(--bright);
+  box-shadow: 0 0 60px rgba(236, 233, 227, .28);
+}
+.form button:disabled { opacity: .6; }
+.form button:focus-visible { outline-offset: 4px; border-radius: 999px; }
+
+.form__status {
+  margin: 0;
+  min-height: 1em;
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+}
+.form__status:empty { display: none; }
+
+.form-thanks {
+  margin: 0;
+  text-align: center;
+  font-size: 21px;
+  font-style: italic;
+  color: var(--bright);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  padding: 32px var(--pagepad) 40px;
+  font-size: 16px;
+  font-style: italic;
+  opacity: .5;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 640px) {
+  .nav { padding-top: 16px; padding-bottom: 16px; }
+  /* Tighter gaps so the Instagram icon stays on the same line as the links */
+  .nav__links { gap: 0 14px; }
+  /* 44px tap targets */
+  .nav__links a,
+  .footer a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .nav__icon { min-width: 44px; justify-content: center; }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .fog,
+  .fog__blob,
+  .hero__name { animation: none; }
+  .hero__name { opacity: .9; filter: none; }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .halo { display: none !important; }
+}
+
+/* ---------- Windows high-contrast mode ---------- */
+
+@media (forced-colors: active) {
+  .hero__name,
+  .script-title {
+    background: none;
+    color: CanvasText;
+    filter: none;
+  }
+}
