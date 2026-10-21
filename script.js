@@ -142,6 +142,27 @@ function setUpHalo() {
   requestAnimationFrame(tick);
 }
 
+/* ---------- Tap light (touch only) ---------- */
+
+function setUpTapLight() {
+  if (reducedMotion) return;
+
+  // Links, buttons, form fields and paintings already respond to taps.
+  const interactive = 'a, button, input, textarea, select, label, .piece';
+
+  document.addEventListener('pointerdown', (e) => {
+    if (e.pointerType !== 'touch' || e.target.closest(interactive)) return;
+
+    const light = document.createElement('div');
+    light.className = 'tap-light';
+    light.setAttribute('aria-hidden', 'true');
+    light.style.left = e.clientX + 'px';
+    light.style.top = e.clientY + 'px';
+    light.addEventListener('animationend', () => light.remove());
+    document.body.append(light);
+  });
+}
+
 /* ---------- Forms (Formspree) ---------- */
 
 function setUpForms() {
@@ -180,4 +201,5 @@ function setUpForms() {
 buildGallery();
 setUpReveal();
 setUpHalo();
+setUpTapLight();
 setUpForms();
