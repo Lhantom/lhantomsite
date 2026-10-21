@@ -64,23 +64,57 @@ function buildGallery() {
     grid.append(figure);
   });
 
-  // Tap (or Enter/Space) toggles the details; only one open at a time.
-  const pieces = grid.querySelectorAll('.piece');
-  const toggle = (piece) => {
-    const open = !piece.classList.contains('is-open');
-    pieces.forEach((other) => other.classList.remove('is-open'));
-    piece.classList.toggle('is-open', open);
-  };
-  pieces.forEach((piece) => {
-    piece.addEventListener('click', () => toggle(piece));
+  // Tap/click (or Enter/Space) enlarges the painting.
+  grid.querySelectorAll('.piece').forEach((piece, i) => {
+    piece.setAttribute('role', 'button');
+    piece.setAttribute('aria-label', `Enlarge ${PAINTINGS[i].title}`);
+    piece.addEventListener('click', () => openLightbox(piece, PAINTINGS[i]));
     piece.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        toggle(piece);
+        openLightbox(piece, PAINTINGS[i]);
       }
     });
-    piece.addEventListener('blur', () => piece.classList.remove('is-open'));
   });
+}
+
+/* ---------- Lightbox (enlarged painting) ---------- */
+
+function openLightbox(piece, p) {
+  const box = document.querySelector('.lightbox');
+  if (!box || box.open) return;
+
+  // Reuse whatever the tile is showing: the photo, or its placeholder.
+  const art = box.querySelector('.lightbox__art');
+  const img = piece.querySelector('.piece__img');
+  if (piece.classList.contains('has-image') && img) {
+    const big = document.createElement('img');
+    big.className = 'lightbox__img';
+    big.src = img.src;
+    big.alt = p.alt;
+    art.replaceChildren(big);
+  } else {
+    const placeholder = piece.querySelector('.piece__placeholder').cloneNode(true);
+    placeholder.classList.add('lightbox__placeholder');
+    art.replaceChildren(placeholder);
+  }
+
+  box.querySelector('.lightbox__title').textContent = p.title;
+  box.querySelector('.lightbox__meta').textContent = `${p.year} · ${p.medium} · ${p.size}`;
+
+  document.documentElement.classList.add('lightbox-open');
+  box.showModal();
+}
+
+function setUpLightbox() {
+  const box = document.querySelector('.lightbox');
+  if (!box) return;
+
+  box.addEventListener('close', () => {
+    document.documentElement.classList.remove('lightbox-open');
+  });
+  // A tap anywhere (or the close button, or Escape) closes it.
+  box.addEventListener('click', () => box.close());
 }
 
 /* ---------- Scroll reveal ---------- */
@@ -147,11 +181,9 @@ function setUpHalo() {
 function setUpTapLight() {
   if (reducedMotion) return;
 
-  // Links, buttons, form fields and paintings already respond to taps.
-  const interactive = 'a, button, input, textarea, select, label, .piece';
-
   document.addEventListener('pointerdown', (e) => {
-    if (e.pointerType !== 'touch' || e.target.closest(interactive)) return;
+    // Everywhere except over an enlarged painting.
+    if (e.pointerType !== 'touch' || document.querySelector('.lightbox[open]')) return;
 
     const light = document.createElement('div');
     light.className = 'tap-light';
@@ -199,6 +231,7 @@ function setUpForms() {
 }
 
 buildGallery();
+setUpLightbox();
 setUpReveal();
 setUpHalo();
 setUpTapLight();
