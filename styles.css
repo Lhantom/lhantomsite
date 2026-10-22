@@ -10,7 +10,7 @@
   --field-fill: rgba(255, 255, 255, .025);
   --button-bg: rgba(236, 233, 227, .9);
 
-  --script: 'Italianno', cursive;
+  --script: 'Pinyon Script', cursive;
   --serif: 'Cormorant Garamond', Georgia, serif;
   --mono: 'IBM Plex Mono', ui-monospace, monospace;
 
@@ -239,7 +239,7 @@ input, textarea { cursor: text; }
   margin: 0;
   font-family: var(--script);
   font-weight: 400;
-  font-size: clamp(40px, 13.1vw, 165px);
+  font-size: clamp(30px, 9.3vw, 118px);
   line-height: 1.1;
   background: linear-gradient(100deg,
     rgba(220, 217, 211, .25) 0%,
@@ -262,7 +262,7 @@ input, textarea { cursor: text; }
   font-family: var(--script);
   font-weight: 400;
   /* Smaller than the name on phones, so the name stays the focus */
-  font-size: clamp(40px, 11vw, 81px);
+  font-size: clamp(30px, 8.2vw, 60px);
   line-height: 1.1;
   text-align: center;
   /* Fainter than the name, for the same reason */
@@ -361,7 +361,7 @@ input, textarea { cursor: text; }
   pointer-events: none;
   user-select: none;
   font-family: var(--script);
-  font-size: 26px;
+  font-size: 19px;
   line-height: 1;
   color: rgba(236, 233, 227, .55);
   text-shadow: 0 1px 6px rgba(0, 0, 0, .6);
@@ -459,7 +459,7 @@ input, textarea { cursor: text; }
 }
 
 .lightbox__art { position: relative; }
-.lightbox__art .watermark { font-size: clamp(26px, 4vw, 40px); right: 18px; bottom: 14px; }
+.lightbox__art .watermark { font-size: clamp(19px, 3vw, 29px); right: 18px; bottom: 14px; }
 
 .lightbox__img {
   display: block;
