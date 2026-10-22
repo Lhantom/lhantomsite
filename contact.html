@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Phren Lhantom</title>
+  <meta name="description" content="Enquire about an original painting, a print, or a commission from Phren Lhantom.">
+  <meta name="theme-color" content="#0a0a0b">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="site">
+    <!-- Atmosphere: drifting fog and cursor halo (decorative) -->
+    <div class="fog" aria-hidden="true">
+      <div class="fog__blob fog__blob--a"></div>
+      <div class="fog__blob fog__blob--b"></div>
+      <div class="fog__vignette"></div>
+    </div>
+    <div class="halo" aria-hidden="true"></div>
+
+    <div class="content">
+      <nav class="nav" aria-label="Main">
+        <div class="nav__links">
+          <a href="index.html">Home</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html" aria-current="page">Contact</a>
+          <a class="nav__icon" href="https://www.instagram.com/lhantom_art/" target="_blank" rel="noopener" aria-label="Instagram (opens in a new tab)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"></circle>
+            </svg>
+          </a>
+        </div>
+      </nav>
+
+      <main id="main">
+        <section class="form-section form-section--last reveal" aria-labelledby="contact-title">
+          <div class="form-section__intro">
+            <h1 id="contact-title" class="script-title script-title--tight page-title">Contact &amp; Commission</h1>
+            <p>I would love to hear from you.</p>
+            <p>Should a piece speak to you, it may be yours, whether an original painting, a print, or a commission of your own, especially if you would like to be painted yourself.</p>
+            <p>Each original is one of a kind, painted by hand in oil and never reproduced as another original. Once it finds its home, it belongs to you alone.</p>
+            <p>Prints are limited to an edition of ten small and four large per painting, exact dimensions vary, each one signed.</p>
+            <p>For commissions, each piece is given careful attention, so not every commission can be accepted. Please include a budget, timeline, as many details as possible, and an inspiration photograph with your request, all of which will be kept confidential. Should you be open to me sharing your commission on my socials, you will receive 15% off. If you are also happy for your piece to live on as a limited edition print for others to collect, you will receive a further 15% off.</p>
+            <p>Some of them are waiting for you…</p>
+          </div>
+
+          <form class="form form--enquiry" action="https://formspree.io/f/mjygnazv" method="POST">
+            <input type="hidden" name="_subject" value="Website enquiry">
+
+            <label class="visually-hidden" for="m-name">Name</label>
+            <input id="m-name" name="name" placeholder="Name" autocomplete="name" required>
+            <label class="visually-hidden" for="m-email">Email</label>
+            <input id="m-email" name="email" type="email" placeholder="Email" autocomplete="email" required>
+            <label class="visually-hidden" for="m-note">A note</label>
+            <textarea id="m-note" name="note" rows="5" placeholder="A note" required></textarea>
+
+            <fieldset class="choice">
+              <legend class="form__legend">Your enquiry is about</legend>
+              <div class="choice__options">
+                <label class="choice__pill"><input type="radio" name="enquiry_type" value="Original painting"><span>Original painting</span></label>
+                <label class="choice__pill"><input type="radio" name="enquiry_type" value="Print"><span>Print</span></label>
+                <label class="choice__pill"><input type="radio" name="enquiry_type" value="Commission"><span>Commission</span></label>
+              </div>
+            </fieldset>
+
+            <!-- Shown (and sent) only when Commission is chosen -->
+            <fieldset class="commission" hidden disabled>
+              <legend class="form__legend">Your commission</legend>
+              <label class="visually-hidden" for="m-description">Description of the piece you have in mind</label>
+              <textarea id="m-description" name="commission_description" rows="4" placeholder="Description of the piece you have in mind"></textarea>
+              <label class="visually-hidden" for="m-size">Desired size</label>
+              <input id="m-size" name="desired_size" placeholder="Desired size">
+              <label class="visually-hidden" for="m-timeline">Timeline</label>
+              <input id="m-timeline" name="timeline" placeholder="Timeline">
+              <label class="visually-hidden" for="m-budget">Budget</label>
+              <input id="m-budget" name="budget" placeholder="Budget">
+
+              <!-- Used once uploads are switched on in script.js -->
+              <div class="upload">
+                <div class="upload__row">
+                  <label class="upload__button" for="m-photo">Add inspiration photo</label>
+                  <input id="m-photo" class="visually-hidden" type="file" name="inspiration_photo" accept=".jpg,.jpeg,.png,.heic,image/jpeg,image/png,image/heic" required>
+                  <span class="upload__name" aria-live="polite">No photo chosen</span>
+                </div>
+                <p class="upload__note">Inspiration photos are kept confidential. JPG, PNG or HEIC, up to 10 MB.</p>
+              </div>
+              <!-- Shown while uploads are switched off -->
+              <p class="upload-off upload__note">Once I reply, you can send your inspiration photo by email. Inspiration photos are kept confidential.</p>
+
+              <label class="check"><input type="checkbox" name="share_on_socials" value="Yes"><span>I’m happy for my commission to be shared on Phren Lhantom’s socials (15% off)</span></label>
+              <label class="check"><input type="checkbox" name="offer_as_print" value="Yes"><span>I’m happy for my commission to be offered as a limited edition print to be sold to others (a further 15% off)</span></label>
+            </fieldset>
+
+            <button type="submit">Send</button>
+            <p class="form__status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>© 2026 Phren Lhantom</span>
+        <a href="contact.html" aria-current="page">Contact</a>
+        <a href="https://www.instagram.com/lhantom_art/" target="_blank" rel="noopener">Instagram<span class="visually-hidden"> (opens in a new tab)</span></a>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

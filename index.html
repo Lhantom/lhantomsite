@@ -28,9 +28,9 @@
     <div class="content">
       <nav class="nav" aria-label="Main">
         <div class="nav__links">
-          <a href="#about">About</a>
-          <a href="#work">Gallery</a>
-          <a href="#contact">Contact</a>
+          <a href="index.html" aria-current="page">Home</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
           <a class="nav__icon" href="https://www.instagram.com/lhantom_art/" target="_blank" rel="noopener" aria-label="Instagram (opens in a new tab)">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
               <rect x="3" y="3" width="18" height="18" rx="5"></rect>
@@ -51,41 +51,18 @@
           <p>I hope you like my oil paintings of faces and figures, kissed by moonlight and shadow. Each piece is a secret I couldn’t keep, waiting to be seen, held, or to be you.</p>
         </section>
 
-        <section id="work" class="gallery" aria-labelledby="work-title">
-          <h2 id="work-title" class="visually-hidden">Gallery</h2>
-          <!-- Paintings are listed in script.js -->
-          <div class="gallery__grid"></div>
+        <section class="gallery gallery--featured" aria-labelledby="featured-title">
+          <h2 id="featured-title" class="visually-hidden">Featured painting</h2>
+          <!-- The painting marked `featured` in script.js -->
+          <div class="gallery__grid gallery__grid--featured" data-gallery="featured"></div>
           <noscript><p class="gallery__noscript">Turn on JavaScript to view the paintings.</p></noscript>
-        </section>
-
-        <section id="contact" class="form-section form-section--last reveal" aria-labelledby="contact-title">
-          <div class="form-section__intro">
-            <h2 id="contact-title" class="script-title script-title--tight">Contact &amp; Commission</h2>
-            <p>I would love to hear from you.</p>
-            <p>Should a piece speak to you, it may be yours, whether an original painting, a print, or a commission of your own, especially if you would like to be painted yourself.</p>
-            <p>Each original is one of a kind, painted by hand in oil and never reproduced as another original. Once it finds its home, it belongs to you alone.</p>
-            <p>Prints are limited to an edition of ten small and four large per painting, exact dimensions vary, each one signed.</p>
-            <p>For commissions, each piece is given careful attention, so not every commission can be accepted. Please include a budget, timeline, as many details as possible, and an inspiration photograph with your request, all of which will be kept confidential. Should you be open to me sharing your commission on my socials, you will receive 15% off. If you are also happy for your piece to live on as a limited edition print for others to collect, you will receive a further 15% off.</p>
-            <p>Some of them are waiting for you…</p>
-          </div>
-          <form class="form" action="https://formspree.io/f/mjygnazv" method="POST">
-            <input type="hidden" name="_subject" value="Website enquiry">
-            <label class="visually-hidden" for="m-name">Name</label>
-            <input id="m-name" name="name" placeholder="Name" autocomplete="name" required>
-            <label class="visually-hidden" for="m-email">Email</label>
-            <input id="m-email" name="email" type="email" placeholder="Email" autocomplete="email" required>
-            <label class="visually-hidden" for="m-size">Approximate size, for commissions (optional)</label>
-            <input id="m-size" name="size" placeholder="Approximate size (for commissions)">
-            <label class="visually-hidden" for="m-message">Message</label>
-            <textarea id="m-message" name="message" rows="5" placeholder="Message" required></textarea>
-            <button type="submit">Send message</button>
-            <p class="form__status" role="status" aria-live="polite"></p>
-          </form>
+          <p class="cta reveal"><a class="cta__link" href="gallery.html">View the Gallery</a></p>
         </section>
       </main>
 
       <footer class="footer">
         <span>© 2026 Phren Lhantom</span>
+        <a href="contact.html">Contact</a>
         <a href="https://www.instagram.com/lhantom_art/" target="_blank" rel="noopener">Instagram<span class="visually-hidden"> (opens in a new tab)</span></a>
       </footer>
     </div>
@@ -99,6 +76,7 @@
       <figcaption class="lightbox__caption">
         <span id="lightbox-title" class="lightbox__title"></span>
         <span class="lightbox__meta"></span>
+        <span class="lightbox__availability"></span>
       </figcaption>
     </figure>
   </dialog>

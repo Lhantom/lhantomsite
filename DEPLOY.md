@@ -1,6 +1,6 @@
 # Putting the site online
 
-The site is three files (`index.html`, `styles.css`, `script.js`) plus an `images/` folder. There is no build step: GitHub Pages serves them as they are.
+The site is three pages (`index.html` home, `gallery.html`, `contact.html`) sharing `styles.css` and `script.js`, plus an `images/` folder. There is no build step: GitHub Pages serves them as they are.
 
 ## 1. Push to GitHub
 
@@ -32,17 +32,25 @@ Every later push to `main` updates the live site automatically.
 
 GitHub Pages can't send email by itself, so the forms post to [Formspree](https://formspree.io).
 
-The Contact & Commission form already uses the form ID `mjygnazv` (`https://formspree.io/f/mjygnazv` in `index.html`). Messages arrive with the subject "Website enquiry".
+The form on `contact.html` uses the form ID `mjygnazv` (`https://formspree.io/f/mjygnazv`). Messages arrive with the subject "Website enquiry: " plus the enquiry type (Original painting, Print or Commission).
 
-- To use a different form, replace `mjygnazv` in `index.html`.
+- To use a different form, replace `mjygnazv` in `contact.html`.
 - Send yourself a test message from the live site. Formspree may ask you to confirm the first submission.
-- The free plan allows 50 submissions a month.
+- The free plan allows 50 submissions a month and does not accept file uploads.
+
+**Inspiration photo uploads** are built but switched off. While they're off, commission clients are told they can email the photo after you reply. To switch them on:
+
+1. Upgrade the Formspree form to a plan with file uploads (Personal or above).
+2. In `script.js`, change `const UPLOADS_ENABLED = false;` to `true`.
+
+Uploads then accept JPG, PNG and HEIC up to 10 MB, are required for commissions, and arrive as a private link in the Formspree email.
 
 ## 4. Fill in the real content
 
 - **Instagram**: both links in `index.html` point to `https://www.instagram.com/lhantom_art/`.
 - **About**: the text is in the `#about` section of `index.html`.
-- **Paintings**: put the photos in `images/` as `01.jpg` to `09.jpg`. Then edit the list at the top of `script.js`: title, year, medium, size, and an `alt` description of each painting for screen-reader users. Each photo is shown at its own shape, so `ratio` only matters while a photo is missing.
+- **Paintings**: put the photos in `images/` as `01.jpg` to `12.jpg`. Then edit the list at the top of `script.js`: title, year, medium, size, availability, and an `alt` description of each painting for screen-reader users.
+- **Featured painting**: the home page shows the painting marked `featured: true` in that list. Move it to another line to change it. Each photo is shown at its own shape, so `ratio` only matters while a photo is missing.
   - Keep photos around 2000px on the long side and under about 500 KB each so the page loads quickly on phones.
   - To show more or fewer paintings, add or remove lines in that list.
 

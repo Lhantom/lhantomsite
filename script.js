@@ -1,23 +1,39 @@
-/* Phren Lhantom — single-page portfolio */
+/* Phren Lhantom — portfolio (home, gallery and contact pages share this file) */
 
 /*
- * Paintings, in display order.
+ * Paintings, in display order on the gallery page.
  * Put each photo in the images/ folder with the file name below.
  * Until a photo exists, a dark placeholder tile is shown at `ratio`.
  * Once the photo loads, it is shown at its own natural shape.
  * `alt` should describe what the painting looks like, for people using screen readers.
+ * `availability` is shown when a painting is enlarged, e.g. 'Original available',
+ *   'Sold', 'Prints available', or 'Sold · Prints available'.
+ * `featured: true` puts that painting on the home page (the first one marked is used).
  */
 const PAINTINGS = [
-  { file: 'images/01.jpg', title: 'Untitled I',    year: 2024, medium: 'Oil on canvas',    size: '60 × 80 cm',  ratio: '3/4', alt: 'Placeholder: describe painting 01' },
-  { file: 'images/02.jpg', title: 'Untitled II',   year: 2025, medium: 'Oil on linen',     size: '50 × 50 cm',  ratio: '4/5', alt: 'Placeholder: describe painting 02' },
-  { file: 'images/03.jpg', title: 'Untitled III',  year: 2026, medium: 'Acrylic on panel', size: '90 × 120 cm', ratio: '1/1', alt: 'Placeholder: describe painting 03' },
-  { file: 'images/04.jpg', title: 'Untitled IV',   year: 2024, medium: 'Oil on canvas',    size: '40 × 60 cm',  ratio: '2/3', alt: 'Placeholder: describe painting 04' },
-  { file: 'images/05.jpg', title: 'Untitled V',    year: 2025, medium: 'Oil on linen',     size: '60 × 80 cm',  ratio: '5/4', alt: 'Placeholder: describe painting 05' },
-  { file: 'images/06.jpg', title: 'Untitled VI',   year: 2026, medium: 'Acrylic on panel', size: '50 × 50 cm',  ratio: '3/4', alt: 'Placeholder: describe painting 06' },
-  { file: 'images/07.jpg', title: 'Untitled VII',  year: 2024, medium: 'Oil on canvas',    size: '90 × 120 cm', ratio: '4/3', alt: 'Placeholder: describe painting 07' },
-  { file: 'images/08.jpg', title: 'Untitled VIII', year: 2025, medium: 'Oil on linen',     size: '40 × 60 cm',  ratio: '2/3', alt: 'Placeholder: describe painting 08' },
-  { file: 'images/09.jpg', title: 'Untitled IX',   year: 2026, medium: 'Acrylic on panel', size: '60 × 80 cm',  ratio: '1/1', alt: 'Placeholder: describe painting 09' },
+  { file: 'images/01.jpg', title: 'Untitled I',    year: 2024, medium: 'Oil on canvas',    size: '60 × 80 cm',  ratio: '3/4', availability: 'Original available', featured: true, alt: 'Placeholder: describe painting 01' },
+  { file: 'images/02.jpg', title: 'Untitled II',   year: 2025, medium: 'Oil on linen',     size: '50 × 50 cm',  ratio: '4/5', availability: 'Original available', alt: 'Placeholder: describe painting 02' },
+  { file: 'images/03.jpg', title: 'Untitled III',  year: 2026, medium: 'Acrylic on panel', size: '90 × 120 cm', ratio: '1/1', availability: 'Original available', alt: 'Placeholder: describe painting 03' },
+  { file: 'images/04.jpg', title: 'Untitled IV',   year: 2024, medium: 'Oil on canvas',    size: '40 × 60 cm',  ratio: '2/3', availability: 'Original available', alt: 'Placeholder: describe painting 04' },
+  { file: 'images/05.jpg', title: 'Untitled V',    year: 2025, medium: 'Oil on linen',     size: '60 × 80 cm',  ratio: '5/4', availability: 'Original available', alt: 'Placeholder: describe painting 05' },
+  { file: 'images/06.jpg', title: 'Untitled VI',   year: 2026, medium: 'Acrylic on panel', size: '50 × 50 cm',  ratio: '3/4', availability: 'Original available', alt: 'Placeholder: describe painting 06' },
+  { file: 'images/07.jpg', title: 'Untitled VII',  year: 2024, medium: 'Oil on canvas',    size: '90 × 120 cm', ratio: '4/3', availability: 'Original available', alt: 'Placeholder: describe painting 07' },
+  { file: 'images/08.jpg', title: 'Untitled VIII', year: 2025, medium: 'Oil on linen',     size: '40 × 60 cm',  ratio: '2/3', availability: 'Original available', alt: 'Placeholder: describe painting 08' },
+  { file: 'images/09.jpg', title: 'Untitled IX',   year: 2026, medium: 'Acrylic on panel', size: '60 × 80 cm',  ratio: '1/1', availability: 'Original available', alt: 'Placeholder: describe painting 09' },
+  { file: 'images/10.jpg', title: 'Untitled X',    year: 2026, medium: 'Oil on canvas',    size: '50 × 70 cm',  ratio: '3/4', availability: 'Original available', alt: 'Placeholder: describe painting 10' },
+  { file: 'images/11.jpg', title: 'Untitled XI',   year: 2026, medium: 'Oil on linen',     size: '60 × 60 cm',  ratio: '1/1', availability: 'Original available', alt: 'Placeholder: describe painting 11' },
+  { file: 'images/12.jpg', title: 'Untitled XII',  year: 2026, medium: 'Oil on canvas',    size: '70 × 90 cm',  ratio: '4/5', availability: 'Original available', alt: 'Placeholder: describe painting 12' },
 ];
+
+/*
+ * Photo uploads on the contact form.
+ * Formspree's free plan does not accept files, so this stays false until the
+ * Formspree plan is upgraded (Personal or above). Set it to true to switch the
+ * upload field on; until then commission clients are asked to email the photo.
+ */
+const UPLOADS_ENABLED = false;
+const UPLOAD_MAX_MB = 10;
+const UPLOAD_TYPES = ['jpg', 'jpeg', 'png', 'heic'];
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -32,16 +48,23 @@ function makeWatermark() {
 
 /* ---------- Gallery ---------- */
 
+// data-gallery="all" shows every painting; "featured" shows the home page's one.
 function buildGallery() {
-  const grid = document.querySelector('.gallery__grid');
+  const grid = document.querySelector('[data-gallery]');
   if (!grid) return;
 
-  PAINTINGS.forEach((p, i) => {
-    const number = String(i + 1).padStart(2, '0');
+  const list = grid.dataset.gallery === 'featured'
+    ? [PAINTINGS.find((p) => p.featured) || PAINTINGS[0]]
+    : PAINTINGS;
+
+  list.forEach((p) => {
+    const number = String(PAINTINGS.indexOf(p) + 1).padStart(2, '0');
 
     const figure = document.createElement('figure');
     figure.className = 'piece reveal';
     figure.tabIndex = 0;
+    figure.setAttribute('role', 'button');
+    figure.setAttribute('aria-label', `Enlarge ${p.title}`);
 
     const art = document.createElement('div');
     art.className = 'piece__art';
@@ -50,7 +73,7 @@ function buildGallery() {
     placeholder.className = 'piece__placeholder';
     placeholder.style.aspectRatio = p.ratio;
     placeholder.setAttribute('aria-hidden', 'true');
-    placeholder.textContent = 'painting ' + number;
+    placeholder.textContent = 'painting ' + number;
 
     const img = document.createElement('img');
     img.className = 'piece__img';
@@ -71,17 +94,13 @@ function buildGallery() {
 
     figure.append(art, caption);
     grid.append(figure);
-  });
 
-  // Tap/click (or Enter/Space) enlarges the painting.
-  grid.querySelectorAll('.piece').forEach((piece, i) => {
-    piece.setAttribute('role', 'button');
-    piece.setAttribute('aria-label', `Enlarge ${PAINTINGS[i].title}`);
-    piece.addEventListener('click', () => openLightbox(piece, PAINTINGS[i]));
-    piece.addEventListener('keydown', (e) => {
+    // Tap/click (or Enter/Space) enlarges the painting.
+    figure.addEventListener('click', () => openLightbox(figure, p));
+    figure.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openLightbox(piece, PAINTINGS[i]);
+        openLightbox(figure, p);
       }
     });
   });
@@ -111,6 +130,7 @@ function openLightbox(piece, p) {
 
   box.querySelector('.lightbox__title').textContent = p.title;
   box.querySelector('.lightbox__meta').textContent = `${p.year} · ${p.medium} · ${p.size}`;
+  box.querySelector('.lightbox__availability').textContent = p.availability;
 
   document.documentElement.classList.add('lightbox-open');
   box.showModal();
@@ -214,6 +234,51 @@ function setUpTapLight() {
   });
 }
 
+/* ---------- Contact form: commission fields and photo upload ---------- */
+
+function setUpEnquiryForm() {
+  const form = document.querySelector('.form--enquiry');
+  if (!form) return;
+
+  const commission = form.querySelector('.commission');
+  const subject = form.querySelector('input[name="_subject"]');
+  const upload = form.querySelector('.upload');
+  const uploadOff = form.querySelector('.upload-off');
+  const file = form.querySelector('input[type="file"]');
+  const fileName = form.querySelector('.upload__name');
+
+  // A disabled fieldset is hidden, skipped by validation, and not sent.
+  const update = () => {
+    const type = form.querySelector('input[name="enquiry_type"]:checked');
+    const isCommission = type && type.value === 'Commission';
+    commission.disabled = !isCommission;
+    commission.hidden = !isCommission;
+    subject.value = type ? `Website enquiry: ${type.value}` : 'Website enquiry';
+  };
+  form.addEventListener('change', update);
+  update();
+
+  if (!UPLOADS_ENABLED) {
+    upload.remove();
+    return;
+  }
+  uploadOff.remove();
+  form.enctype = 'multipart/form-data';
+
+  file.addEventListener('change', () => {
+    const f = file.files[0];
+    let problem = '';
+    if (f) {
+      const ext = f.name.split('.').pop().toLowerCase();
+      if (!UPLOAD_TYPES.includes(ext)) problem = 'Please choose a JPG, PNG or HEIC photo.';
+      else if (f.size > UPLOAD_MAX_MB * 1024 * 1024) problem = `Please choose a photo under ${UPLOAD_MAX_MB} MB.`;
+    }
+    file.setCustomValidity(problem);
+    fileName.textContent = problem || (f ? f.name : 'No photo chosen');
+    if (problem) file.reportValidity();
+  });
+}
+
 /* ---------- Forms (Formspree) ---------- */
 
 function setUpForms() {
@@ -255,4 +320,5 @@ setUpImageGuard();
 setUpReveal();
 setUpHalo();
 setUpTapLight();
+setUpEnquiryForm();
 setUpForms();
