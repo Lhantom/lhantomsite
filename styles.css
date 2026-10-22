@@ -593,7 +593,8 @@ input, textarea { cursor: text; }
 }
 
 .form input,
-.form textarea {
+.form textarea,
+.form select {
   width: 100%;
   border: 1px solid var(--field-border);
   border-radius: 999px;
@@ -608,8 +609,20 @@ input, textarea { cursor: text; }
   padding: 16px 22px;
   resize: vertical;
 }
+/* Painting picker: a pill like the other fields, with a thin arrow */
+.form select {
+  appearance: none;
+  padding-right: 48px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23d8d5cf' stroke-width='1.3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 22px center;
+}
+.form select:invalid { color: rgba(216, 213, 207, .4); }
+.form option { background: var(--bg); color: var(--text); }
+
 .form input:focus,
-.form textarea:focus {
+.form textarea:focus,
+.form select:focus {
   border-color: var(--field-border-focus);
 }
 /* A soft extra ring so keyboard users can find the field */
@@ -646,13 +659,13 @@ input, textarea { cursor: text; }
   padding: 0;
   border: 0;
 }
-.commission {
+.detail {
   display: flex;
   flex-direction: column;
   gap: 14px;
   margin-top: 10px !important;
 }
-.commission[hidden] { display: none; }
+.detail[hidden] { display: none; }
 
 .form__legend {
   padding: 0;
@@ -790,6 +803,28 @@ input, textarea { cursor: text; }
     align-items: center;
   }
   .nav__icon { min-width: 44px; justify-content: center; }
+}
+
+/* ---------- Wide screens: text and featured painting fill the middle half ---------- */
+
+@media (min-width: 1024px) {
+  .about,
+  .form-section {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .about p,
+  .form-section__intro {
+    width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .form {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .gallery__grid--featured { max-width: 50vw; }
 }
 
 /* ---------- Reduced motion ---------- */

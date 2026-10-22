@@ -234,25 +234,35 @@ function setUpTapLight() {
   });
 }
 
-/* ---------- Contact form: commission fields and photo upload ---------- */
+/* ---------- Contact form: follow-up fields and photo upload ---------- */
 
 function setUpEnquiryForm() {
   const form = document.querySelector('.form--enquiry');
   if (!form) return;
 
-  const commission = form.querySelector('.commission');
+  const details = form.querySelectorAll('.detail[data-for]');
   const subject = form.querySelector('input[name="_subject"]');
   const upload = form.querySelector('.upload');
   const uploadOff = form.querySelector('.upload-off');
   const file = form.querySelector('input[type="file"]');
   const fileName = form.querySelector('.upload__name');
 
-  // A disabled fieldset is hidden, skipped by validation, and not sent.
+  // Painting lists: originals leave out anything marked Sold; prints list every painting.
+  form.querySelectorAll('select[data-paintings]').forEach((select) => {
+    PAINTINGS
+      .filter((p) => select.dataset.paintings === 'all' || !/sold/i.test(p.availability))
+      .forEach((p) => select.add(new Option(`${p.title} (${p.size})`, p.title)));
+  });
+
+  // Show the fields for the chosen enquiry type. A disabled fieldset is
+  // hidden, skipped by validation, and not sent.
   const update = () => {
     const type = form.querySelector('input[name="enquiry_type"]:checked');
-    const isCommission = type && type.value === 'Commission';
-    commission.disabled = !isCommission;
-    commission.hidden = !isCommission;
+    details.forEach((fieldset) => {
+      const on = !!type && fieldset.dataset.for === type.value;
+      fieldset.disabled = !on;
+      fieldset.hidden = !on;
+    });
     subject.value = type ? `Website enquiry: ${type.value}` : 'Website enquiry';
   };
   form.addEventListener('change', update);

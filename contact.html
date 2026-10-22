@@ -72,8 +72,29 @@
               </div>
             </fieldset>
 
-            <!-- Shown (and sent) only when Commission is chosen -->
-            <fieldset class="commission" hidden disabled>
+            <!-- Each of these is shown (and sent) only when its enquiry type is chosen.
+                 The painting lists are filled in from script.js. -->
+            <fieldset class="detail" data-for="Original painting" hidden disabled>
+              <legend class="visually-hidden">Which original painting</legend>
+              <label class="visually-hidden" for="m-original">Which original painting</label>
+              <select id="m-original" name="original_painting" data-paintings="originals" required>
+                <option value="">Which original painting?</option>
+              </select>
+            </fieldset>
+
+            <fieldset class="detail" data-for="Print" hidden disabled>
+              <legend class="visually-hidden">Which print</legend>
+              <label class="visually-hidden" for="m-print">Print of which painting</label>
+              <select id="m-print" name="print_of" data-paintings="all" required>
+                <option value="">Print of which painting?</option>
+              </select>
+              <div class="choice__options" role="radiogroup" aria-label="Print size">
+                <label class="choice__pill"><input type="radio" name="print_size" value="Small" required><span>Small</span></label>
+                <label class="choice__pill"><input type="radio" name="print_size" value="Large"><span>Large</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="detail commission" data-for="Commission" hidden disabled>
               <legend class="form__legend">Your commission</legend>
               <label class="visually-hidden" for="m-description">Description of the piece you have in mind</label>
               <textarea id="m-description" name="commission_description" rows="4" placeholder="Description of the piece you have in mind"></textarea>
