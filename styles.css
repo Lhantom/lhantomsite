@@ -1,7 +1,7 @@
 /* Phren Lhantom — single-page portfolio */
 
 :root {
-  --bg: #0a0a0b;
+  --bg: #030303;
   --text: #d8d5cf;
   --bright: #ece9e3;
   --muted: #5e5d5b;
@@ -118,7 +118,7 @@ input, textarea { cursor: text; }
   height: 60vh;
   left: -15vw;
   top: -10vh;
-  background: rgba(190, 192, 200, .07);
+  background: rgba(190, 192, 200, .035);
   animation: drift1 40s ease-in-out infinite;
 }
 .fog__blob--b {
@@ -126,13 +126,13 @@ input, textarea { cursor: text; }
   height: 55vh;
   right: -20vw;
   bottom: -5vh;
-  background: rgba(170, 172, 182, .06);
+  background: rgba(170, 172, 182, .03);
   animation: drift2 52s ease-in-out infinite;
 }
 .fog__vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0, 0, 0, .55) 100%);
+  background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0, 0, 0, .7) 100%);
 }
 
 .halo {
@@ -490,7 +490,7 @@ input, textarea { cursor: text; }
   animation: lightbox-in .5s ease;
 }
 .lightbox::backdrop {
-  background: rgba(6, 6, 7, .94);
+  background: rgba(2, 2, 2, .95);
 }
 .lightbox:focus-visible { outline: none; }
 
