@@ -529,7 +529,9 @@ input, textarea { cursor: text; }
   font-size: 19px;
   line-height: 1.6;
   opacity: .7;
+  text-wrap: pretty;
 }
+.form-section__intro p + p { margin-top: 1em; }
 
 .form {
   display: flex;
