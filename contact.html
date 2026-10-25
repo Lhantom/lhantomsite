@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2026-10-25g">
+  <link rel="stylesheet" href="styles.css?v=2026-10-25h">
   <script>document.documentElement.classList.add('js');</script>
-  <script src="script.js?v=2026-10-25g" defer></script>
+  <script src="script.js?v=2026-10-25h" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -46,8 +46,11 @@
           <div class="form-section__intro">
             <h1 id="contact-title" class="script-title script-title--tight page-title">Contact</h1>
             <p>I would love to hear from you.</p>
-            <p>Should a piece speak to you, it may be yours,<br>
-              whether an original painting, a print, or a commission of your own,<br>
+            <p>Should a piece speak to you,<br>
+              it may be yours,<br>
+              whether an original painting, a print,<br>
+              or<br>
+              a&nbsp;commission&nbsp;of&nbsp;your&nbsp;own,<br>
               especially if you would like to be painted yourself.</p>
           </div>
 
@@ -62,7 +65,7 @@
             <textarea id="m-note" name="note" rows="5" placeholder="A note" required></textarea>
 
             <fieldset class="choice">
-              <legend class="form__legend">Your enquiry is about</legend>
+              <legend class="visually-hidden">Your enquiry is about</legend>
               <div class="choice__options">
                 <label class="choice__pill"><input type="radio" name="enquiry_type" value="Original painting"><span>Original painting</span></label>
                 <label class="choice__pill"><input type="radio" name="enquiry_type" value="Print"><span>Print</span></label>
@@ -77,7 +80,8 @@
               <p class="detail__text">Each original is one of a kind,<br>
                 painted by hand using fine oil paints.<br>
                 Once it finds its home, it belongs to you alone.<br>
-                Some of them are waiting for you…</p>
+                Some of them are waiting for you…<br>
+                A quote will be sent to you with payment details.</p>
               <label class="visually-hidden" for="m-original">Painting name</label>
               <select id="m-original" name="original_painting" data-paintings="originals" required>
                 <option value="">Painting name</option>
@@ -86,7 +90,8 @@
 
             <fieldset class="detail" data-for="Print" hidden disabled>
               <legend class="visually-hidden">Which print</legend>
-              <p class="detail__text">Prints are limited to an edition of ten small and four large per painting, exact dimensions vary, each one signed.</p>
+              <p class="detail__text">Prints are limited to an edition of ten small and four large per painting, exact dimensions vary, each one signed.<br>
+                A quote will be sent to you with payment details.</p>
               <label class="visually-hidden" for="m-print">Painting name</label>
               <select id="m-print" name="print_of" data-paintings="all" required>
                 <option value="">Painting name</option>
@@ -98,11 +103,12 @@
             </fieldset>
 
             <fieldset class="detail commission" data-for="Commission" hidden disabled>
-              <legend class="form__legend">Your commission</legend>
+              <legend class="visually-hidden">Your commission</legend>
               <p class="detail__text">For commissions, each piece is given careful attention, so not every commission can be accepted.<br>
                 Please include a budget, timeline, as many details as possible, and<br>
-                an inspiration photograph with your request,<br>
-                all of which will be kept confidential.</p>
+                an inspiration photograph with&nbsp;your&nbsp;request,<br>
+                all of which will be kept confidential.<br>
+                A quote will be sent to you before your commission is confirmed and approved.</p>
               <label class="visually-hidden" for="m-description">Description of the piece you have in mind</label>
               <textarea id="m-description" name="commission_description" rows="4" placeholder="Description of the piece you have in mind"></textarea>
               <label class="visually-hidden" for="m-size">Desired size</label>

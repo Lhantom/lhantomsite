@@ -781,23 +781,32 @@ input, textarea { cursor: text; }
 .upload__note {
   margin: 8px 0 0;
   font-size: var(--form-size);
-  font-style: italic;
-  line-height: 1.5;
-  opacity: .8;
+  line-height: var(--prose-line);
+  text-align: center;
+  color: var(--prose-color);
+  -webkit-mask: var(--letter-fade) 0 0 / 100% var(--prose-line) repeat-y;
+  mask: var(--letter-fade) 0 0 / 100% var(--prose-line) repeat-y;
 }
 .upload-off { margin: 0; }
 
-/* Discount questions: a quiet switch instead of a checkbox */
+/* Discount questions: centered, with a quiet switch beneath instead of a checkbox */
 .toggle {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  text-align: center;
+  gap: 12px;
   margin-top: 6px;
   font-size: var(--form-size);
-  line-height: 1.35;
 }
-.toggle__text { flex: 1; }
+/* Faded like the rest of the Contact text, loops softer than the letters */
+.toggle__text {
+  line-height: var(--prose-line);
+  color: var(--prose-color);
+  -webkit-mask: var(--letter-fade) 0 0 / 100% var(--prose-line) repeat-y;
+  mask: var(--letter-fade) 0 0 / 100% var(--prose-line) repeat-y;
+}
 .toggle__input {
   position: absolute;
   opacity: 0;
