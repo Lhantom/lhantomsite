@@ -372,10 +372,19 @@ input, textarea { cursor: text; }
   margin: 0 auto;
 }
 
+/* One or more buttons to other pages, stacked and centered */
 .cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
   margin: 0;
   text-align: center;
 }
+/* At the end of the Gallery and Contact pages */
+.cta--end { margin-top: clamp(40px, 8vw, 96px); }
+/* Stacked buttons share one width so they line up */
+.cta__link { min-width: 11em; justify-content: center; }
 .cta__link {
   display: inline-flex;
   align-items: center;
