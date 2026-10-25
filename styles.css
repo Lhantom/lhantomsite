@@ -322,7 +322,7 @@ input, textarea { cursor: text; }
   padding: clamp(24px, 5vw, 64px) var(--pagepad) clamp(64px, 10vw, 140px);
   text-align: center;
 }
-.about p {
+.about p:not(.cta) {
   margin: 0;
   font-family: var(--prose-font);
   font-size: var(--prose-size);
@@ -335,6 +335,9 @@ input, textarea { cursor: text; }
   mask: var(--letter-fade) 0 0 / 100% var(--prose-line) repeat-y;
   text-wrap: pretty;
 }
+
+.about p + p:not(.cta) { margin-top: 1em; }
+.about .cta { margin-top: clamp(32px, 6vw, 56px); }
 
 /* ---------- Gallery ---------- */
 
@@ -884,9 +887,14 @@ input, textarea { cursor: text; }
 /* ---------- Small screens ---------- */
 
 @media (max-width: 640px) {
-  .nav { padding-top: 16px; padding-bottom: 16px; }
+  /* Four links and the icon on one line: slightly smaller, centered, tighter */
+  .nav {
+    justify-content: center;
+    padding: 16px 14px;
+    font-size: 28px;
+  }
   /* Tighter gaps so the Instagram icon stays on the same line as the links */
-  .nav__links { gap: 0 20px; }
+  .nav__links { gap: 0 12px; }
   .footer { gap: 4px 20px; }
   /* 44px tap targets */
   .nav__links a,
@@ -907,7 +915,7 @@ input, textarea { cursor: text; }
     padding-left: 0;
     padding-right: 0;
   }
-  .about p,
+  .about p:not(.cta),
   .form-section__intro {
     width: 50vw;
     margin-left: auto;
@@ -935,7 +943,7 @@ input, textarea { cursor: text; }
 
 /* Everything except the menu and the form fields */
 .script-title,
-.about p,
+.about p:not(.cta),
 .form-section__intro p,
 .detail__text,
 .toggle__text,
@@ -970,7 +978,7 @@ input, textarea { cursor: text; }
   .tap-light { display: none !important; }
   .lightbox[open] { animation: none; }
   .script-title,
-  .about p,
+  .about p:not(.cta),
   .form-section__intro p,
   .detail__text,
   .toggle__text,
@@ -989,7 +997,7 @@ input, textarea { cursor: text; }
 @media (forced-colors: active) {
   .hero__name,
   .script-title,
-  .about p,
+  .about p:not(.cta),
   .form-section__intro p,
   .detail__text {
     background: none;

@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2026-10-25k">
+  <link rel="stylesheet" href="styles.css?v=2026-10-25l">
   <script>document.documentElement.classList.add('js');</script>
-  <script src="script.js?v=2026-10-25k" defer></script>
+  <script src="script.js?v=2026-10-25l" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -29,6 +29,7 @@
       <nav class="nav" aria-label="Main">
         <div class="nav__links">
           <a href="index.html">Home</a>
+          <a href="about.html">About</a>
           <a href="gallery.html">Gallery</a>
           <a href="contact.html" aria-current="page">Contact</a>
           <a class="nav__icon" href="https://www.instagram.com/lhantom_art/" target="_blank" rel="noopener" aria-label="Instagram (opens in a new tab)">
@@ -118,17 +119,17 @@
               <label class="visually-hidden" for="m-size">Desired size</label>
               <select id="m-size" name="desired_size">
                 <option value="">Desired size</option>
-                <option>20 × 25 cm (8 × 10 in)</option>
-                <option>23 × 30 cm (9 × 12 in)</option>
-                <option>28 × 36 cm (11 × 14 in)</option>
-                <option>30 × 40 cm (12 × 16 in)</option>
-                <option>40 × 50 cm (16 × 20 in)</option>
-                <option>45 × 60 cm (18 × 24 in)</option>
-                <option>50 × 60 cm (20 × 24 in)</option>
-                <option>60 × 75 cm (24 × 30 in)</option>
-                <option>60 × 90 cm (24 × 36 in)</option>
-                <option>75 × 100 cm (30 × 40 in)</option>
-                <option>90 × 120 cm (36 × 48 in)</option>
+                <option>8 × 10 in (20 × 25 cm)</option>
+                <option>9 × 12 in (23 × 30 cm)</option>
+                <option>11 × 14 in (28 × 36 cm)</option>
+                <option>12 × 16 in (30 × 40 cm)</option>
+                <option>16 × 20 in (40 × 50 cm)</option>
+                <option>18 × 24 in (45 × 60 cm)</option>
+                <option>20 × 24 in (50 × 60 cm)</option>
+                <option>24 × 30 in (60 × 75 cm)</option>
+                <option>24 × 36 in (60 × 90 cm)</option>
+                <option>30 × 40 in (75 × 100 cm)</option>
+                <option>36 × 48 in (90 × 120 cm)</option>
                 <option>Not sure yet</option>
                 <option>Another size (in my note)</option>
               </select>
@@ -147,8 +148,8 @@
                 <option>For a home or space</option>
                 <option>Something else (in my note)</option>
               </select>
-              <label class="visually-hidden" for="m-budget">Budget</label>
-              <input id="m-budget" name="budget" placeholder="Budget">
+              <label class="visually-hidden" for="m-budget">Budget in Canadian dollars (CAD)</label>
+              <input id="m-budget" name="budget" placeholder="Budget (CAD $)">
 
               <!-- Used once uploads are switched on in script.js -->
               <div class="upload">
@@ -173,7 +174,8 @@
                 <input class="toggle__input" type="checkbox" role="switch" name="offer_as_print" value="Yes">
                 <span class="toggle__switch" aria-hidden="true"></span>
               </label>
-              <p class="detail__text">Should you accept both, you will receive 40% off.</p>
+              <p class="detail__text">Should you accept both, you will receive 40% off.<br>
+                (Sharing on socials, 15% off + limited edition prints, 25% off = 40% off)</p>
             </fieldset>
 
             <button type="submit">Send</button>
