@@ -1,5 +1,12 @@
 /* Phren Lhantom — single-page portfolio */
 
+/* Handwritten script for the About and Contact text (fonts/FlowerIceland.ttf) */
+@font-face {
+  font-family: 'Flower Iceland';
+  src: url('fonts/FlowerIceland.ttf') format('truetype');
+  font-display: swap;
+}
+
 :root {
   --bg: #030303;
   --text: #d8d5cf;
@@ -14,6 +21,9 @@
   --script: 'Pinyon Script', cursive;
   /* About, Contact intro and the menu: a flourished script with swash capitals */
   --prose-font: 'Imperial Script', 'Pinyon Script', cursive;
+  /* About and Contact paragraphs: handwritten. Characters it lacks (numbers, some
+     punctuation) fall back to Imperial Script */
+  --handwriting: 'Flower Iceland', 'Imperial Script', cursive;
   /* Small working text (form, captions, footer): a calmer copperplate script */
   --body-font: 'Petit Formal Script', 'Snell Roundhand', 'Apple Chancery', cursive;
 
@@ -348,7 +358,7 @@ input, textarea { cursor: text; }
 }
 .about p {
   margin: 0;
-  font-family: var(--prose-font);
+  font-family: var(--handwriting);
   font-size: var(--prose-size);
   line-height: var(--prose-line);
   word-spacing: .12em;
@@ -639,7 +649,7 @@ input, textarea { cursor: text; }
 }
 .form-section__intro p {
   margin: 0;
-  font-family: var(--prose-font);
+  font-family: var(--handwriting);
   font-size: var(--prose-size);
   line-height: var(--prose-line);
   word-spacing: .12em;
