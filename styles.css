@@ -10,14 +10,15 @@
   --field-fill: rgba(255, 255, 255, .025);
   --button-bg: rgba(236, 233, 227, .9);
 
+  /* The name, section titles and watermark */
   --script: 'Pinyon Script', cursive;
-  --serif: 'Cormorant Garamond', Georgia, serif;
-  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  /* Everything except the name and titles: a calmer, more legible copperplate script */
+  --body-font: 'Petit Formal Script', 'Snell Roundhand', 'Apple Chancery', cursive;
 
-  /* Script text: About, Contact intro and the menu share this look,
-     softer than normal text so it sits with the faded section titles */
-  --script-text-size: clamp(22px, 2.2vw, 26px);
-  --script-text-color: rgba(216, 213, 207, .58);
+  /* About, Contact intro and the menu share one size and brightness
+     (large enough to read comfortably in a script font) */
+  --text-size: clamp(20px, 2vw, 23px);
+  --text-color: rgba(216, 213, 207, .86);
 
   --pagepad: clamp(24px, 7vw, 96px);
   --focus-ring: 1px solid rgba(236, 233, 227, .7);
@@ -33,7 +34,9 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: var(--serif);
+  font-family: var(--body-font);
+  /* No fake italics or bold on the script font */
+  font-synthesis: none;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -221,9 +224,8 @@ input, textarea { cursor: text; }
   flex-wrap: wrap;
   gap: 12px 28px;
   padding: 28px var(--pagepad);
-  font-family: var(--script);
-  font-size: var(--script-text-size);
-  color: var(--script-text-color);
+  font-size: var(--text-size);
+  color: var(--text-color);
 }
 
 .nav__links {
@@ -301,10 +303,9 @@ input, textarea { cursor: text; }
 }
 .about p {
   margin: 0;
-  font-family: var(--script);
-  font-size: var(--script-text-size);
+  font-size: var(--text-size);
   line-height: 1.8;
-  color: var(--script-text-color);
+  color: var(--text-color);
   text-wrap: pretty;
 }
 
@@ -385,8 +386,8 @@ input, textarea { cursor: text; }
   align-items: center;
   justify-content: center;
   background: radial-gradient(ellipse at 50% 40%, #1c1c1f, #121214);
-  font-family: var(--mono);
-  font-size: 11px;
+  font-family: var(--body-font);
+  font-size: 14px;
   color: var(--muted);
 }
 
@@ -562,7 +563,7 @@ input, textarea { cursor: text; }
   background: transparent;
   font-size: 32px;
   line-height: 1;
-  opacity: .7;
+  opacity: .8;
   transition: opacity .6s ease;
 }
 .lightbox__close:hover { opacity: 1; }
@@ -587,10 +588,9 @@ input, textarea { cursor: text; }
 }
 .form-section__intro p {
   margin: 0;
-  font-family: var(--script);
-  font-size: var(--script-text-size);
+  font-size: var(--text-size);
   line-height: 1.8;
-  color: var(--script-text-color);
+  color: var(--text-color);
   text-wrap: pretty;
 }
 .form-section__intro p + p { margin-top: 1em; }
@@ -681,7 +681,7 @@ input, textarea { cursor: text; }
   margin-bottom: 12px;
   font-size: 19px;
   font-style: italic;
-  opacity: .7;
+  opacity: .8;
 }
 .choice { margin-top: 6px !important; }
 .choice .form__legend,
@@ -740,7 +740,7 @@ input, textarea { cursor: text; }
 .upload:focus-within .upload__button { outline: var(--focus-ring); outline-offset: 3px; }
 .upload__name {
   font-size: 16px;
-  opacity: .7;
+  opacity: .8;
   overflow-wrap: anywhere;
 }
 .upload__note {
@@ -748,7 +748,7 @@ input, textarea { cursor: text; }
   font-size: 16px;
   font-style: italic;
   line-height: 1.5;
-  opacity: .7;
+  opacity: .8;
 }
 .upload-off { margin: 0; }
 
