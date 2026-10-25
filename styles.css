@@ -896,6 +896,8 @@ input, textarea { cursor: text; }
   /* Tighter gaps so the Instagram icon stays on the same line as the links */
   .nav__links { gap: 0 12px; }
   .footer { gap: 4px 20px; }
+  /* Lighter fog on phones, which struggle with very large blurs */
+  .fog__blob { filter: blur(48px); }
   /* 44px tap targets */
   .nav__links a,
   .footer a {
@@ -958,8 +960,8 @@ input, textarea { cursor: text; }
   animation: ghost 7s ease-in-out infinite;
 }
 @keyframes ghost {
-  0%, 100% { filter: opacity(.5) blur(.4px); }
-  50%      { filter: opacity(1) blur(0); }
+  0%, 100% { filter: opacity(.5); }
+  50%      { filter: opacity(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
