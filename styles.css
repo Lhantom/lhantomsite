@@ -811,7 +811,7 @@ input, textarea { cursor: text; }
 .toggle__offer {
   display: block;
   font-weight: inherit;
-  -webkit-text-stroke: .5px currentColor;
+  -webkit-text-stroke: .3px currentColor;
 }
 .toggle__input {
   position: absolute;
@@ -937,6 +937,7 @@ input, textarea { cursor: text; }
 .about p,
 .form-section__intro p,
 .detail__text,
+.toggle__text,
 .form__legend,
 .choice__pill span,
 .form button,
@@ -971,6 +972,7 @@ input, textarea { cursor: text; }
   .about p,
   .form-section__intro p,
   .detail__text,
+  .toggle__text,
   .form__legend,
   .choice__pill span,
   .form button,
