@@ -661,7 +661,8 @@ input, textarea { cursor: text; }
   background-repeat: no-repeat;
   background-position: right 22px center;
 }
-.form select:invalid { color: rgba(216, 213, 207, .4); }
+.form select:invalid,
+.form select:has(option[value=""]:checked) { color: rgba(216, 213, 207, .4); }
 .form option { background: var(--bg); color: var(--text); }
 
 .form input:focus,

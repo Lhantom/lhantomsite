@@ -254,6 +254,18 @@ function setUpEnquiryForm() {
       .forEach((p) => select.add(new Option(`${p.title} (${p.size})`, p.title)));
   });
 
+  // Date fields show their placeholder until tapped, then become a date picker
+  // (a native date field can't show placeholder text).
+  form.querySelectorAll('[data-date-field]').forEach((field) => {
+    field.addEventListener('focus', () => {
+      field.type = 'date';
+      field.min = new Date().toISOString().slice(0, 10);
+    });
+    field.addEventListener('blur', () => {
+      if (!field.value) field.type = 'text';
+    });
+  });
+
   // Show the fields for the chosen enquiry type. A disabled fieldset is
   // hidden, skipped by validation, and not sent.
   const update = () => {

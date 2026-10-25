@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2026-10-25j">
+  <link rel="stylesheet" href="styles.css?v=2026-10-25k">
   <script>document.documentElement.classList.add('js');</script>
-  <script src="script.js?v=2026-10-25j" defer></script>
+  <script src="script.js?v=2026-10-25k" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -51,7 +51,8 @@
               whether an original painting, a print,<br>
               or<br>
               a&nbsp;commission&nbsp;of&nbsp;your&nbsp;own,<br>
-              especially if you would like to be painted yourself.</p>
+              especially if you would like…<br>
+              to be painted yourself.</p>
           </div>
 
           <form class="form form--enquiry" action="https://formspree.io/f/mjygnazv" method="POST">
@@ -107,17 +108,45 @@
             <fieldset class="detail commission" data-for="Commission" hidden disabled>
               <legend class="visually-hidden">Your commission</legend>
               <p class="detail__text">For commissions, each piece is given careful attention, so not every commission can be accepted.<br>
-                Please include a budget, timeline and as many details as possible.<br>
-                Should your commission be approved, I will ask for an inspiration photograph,<br>
-                which you can send by email and which will be kept confidential.<br>
+                Share your vision with me, and include, as best you can, a budget, timeline and as many details as possible.<br>
+                Every enquiry will receive a reply directly from me, whether I approve the commission or not.<br>
                 A quote will be sent to you in that email, and shipping is free.<br>
-                Every enquiry will receive a reply directly from me, whether I approve the commission or not.</p>
+                Should your commission be approved, I will ask for an inspiration photograph,<br>
+                which you can send by email and which will be kept confidential.</p>
               <label class="visually-hidden" for="m-description">Description of the piece you have in mind</label>
               <textarea id="m-description" name="commission_description" rows="4" placeholder="Description of the piece you have in mind"></textarea>
               <label class="visually-hidden" for="m-size">Desired size</label>
-              <input id="m-size" name="desired_size" placeholder="Desired size">
-              <label class="visually-hidden" for="m-timeline">Timeline</label>
-              <input id="m-timeline" name="timeline" placeholder="Timeline">
+              <select id="m-size" name="desired_size">
+                <option value="">Desired size</option>
+                <option>20 × 25 cm (8 × 10 in)</option>
+                <option>23 × 30 cm (9 × 12 in)</option>
+                <option>28 × 36 cm (11 × 14 in)</option>
+                <option>30 × 40 cm (12 × 16 in)</option>
+                <option>40 × 50 cm (16 × 20 in)</option>
+                <option>45 × 60 cm (18 × 24 in)</option>
+                <option>50 × 60 cm (20 × 24 in)</option>
+                <option>60 × 75 cm (24 × 30 in)</option>
+                <option>60 × 90 cm (24 × 36 in)</option>
+                <option>75 × 100 cm (30 × 40 in)</option>
+                <option>90 × 120 cm (36 × 48 in)</option>
+                <option>Not sure yet</option>
+                <option>Another size (in my note)</option>
+              </select>
+              <!-- A plain field showing its placeholder; it becomes a date picker when tapped (script.js) -->
+              <label class="visually-hidden" for="m-date">Desired date to be received by</label>
+              <input id="m-date" name="receive_by" type="text" placeholder="Desired date to be received by" data-date-field>
+              <label class="visually-hidden" for="m-purpose">Purpose of the painting</label>
+              <select id="m-purpose" name="purpose">
+                <option value="">Purpose of the painting</option>
+                <option>For yourself</option>
+                <option>A gift</option>
+                <option>A birthday</option>
+                <option>An anniversary</option>
+                <option>A wedding or engagement</option>
+                <option>A memorial</option>
+                <option>For a home or space</option>
+                <option>Something else (in my note)</option>
+              </select>
               <label class="visually-hidden" for="m-budget">Budget</label>
               <input id="m-budget" name="budget" placeholder="Budget">
 
