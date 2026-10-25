@@ -64,7 +64,7 @@ a {
 }
 a:hover { opacity: .5; }
 
-input, textarea, button { font: inherit; color: inherit; }
+input, textarea, button, select { font: inherit; color: inherit; }
 
 input::placeholder, textarea::placeholder { color: var(--text); opacity: .4; }
 
@@ -613,7 +613,8 @@ input, textarea { cursor: text; }
   margin-bottom: 32px;
   text-align: center;
 }
-.form-section__intro p {
+.form-section__intro p,
+.detail__text {
   margin: 0;
   font-family: var(--prose-font);
   font-size: var(--prose-size);
@@ -627,6 +628,7 @@ input, textarea { cursor: text; }
   text-wrap: pretty;
 }
 .form-section__intro p + p { margin-top: 1em; }
+.detail__text { text-align: center; }
 
 .form {
   display: flex;
@@ -785,21 +787,52 @@ input, textarea { cursor: text; }
 }
 .upload-off { margin: 0; }
 
-/* Checkboxes */
-.check {
+/* Discount questions: a quiet switch instead of a checkbox */
+.toggle {
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
   font-size: var(--form-size);
-  line-height: 1.45;
+  line-height: 1.35;
 }
-.check input {
+.toggle__text { flex: 1; }
+.toggle__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.toggle__switch {
+  position: relative;
   flex: none;
+  width: 52px;
+  height: 30px;
+  border: 1px solid var(--field-border-focus);
+  border-radius: 999px;
+  background: var(--field-fill);
+  transition: background .6s ease, border-color .6s ease;
+}
+.toggle__switch::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
   width: 20px;
   height: 20px;
-  margin: 2px 0 0;
-  accent-color: var(--bright);
+  border-radius: 50%;
+  background: rgba(216, 213, 207, .55);
+  transition: transform .6s ease, background .6s ease;
 }
+.toggle__input:checked + .toggle__switch {
+  border-color: transparent;
+  background: var(--button-bg);
+}
+.toggle__input:checked + .toggle__switch::after {
+  transform: translateX(22px);
+  background: var(--bg);
+}
+.toggle__input:focus-visible + .toggle__switch { outline: var(--focus-ring); outline-offset: 3px; }
 
 .form__status {
   margin: 0;
@@ -888,6 +921,7 @@ input, textarea { cursor: text; }
 .script-title,
 .about p,
 .form-section__intro p,
+.detail__text,
 .form__legend,
 .choice__pill span,
 .form button,
@@ -921,6 +955,7 @@ input, textarea { cursor: text; }
   .script-title,
   .about p,
   .form-section__intro p,
+  .detail__text,
   .form__legend,
   .choice__pill span,
   .form button,
@@ -937,7 +972,8 @@ input, textarea { cursor: text; }
   .hero__name,
   .script-title,
   .about p,
-  .form-section__intro p {
+  .form-section__intro p,
+  .detail__text {
     background: none;
     color: CanvasText;
     filter: none;

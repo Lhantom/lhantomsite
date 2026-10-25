@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2026-10-25f">
+  <link rel="stylesheet" href="styles.css?v=2026-10-25g">
   <script>document.documentElement.classList.add('js');</script>
-  <script src="script.js?v=2026-10-25f" defer></script>
+  <script src="script.js?v=2026-10-25g" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -49,18 +49,6 @@
             <p>Should a piece speak to you, it may be yours,<br>
               whether an original painting, a print, or a commission of your own,<br>
               especially if you would like to be painted yourself.</p>
-            <p>Each original is one of a kind,<br>
-              painted by hand using fine oil paints.<br>
-              Once it finds its home, it belongs to you alone.</p>
-            <p>Prints are limited to an edition of ten small and four large per painting, exact dimensions vary, each one signed.</p>
-            <p>For commissions, each piece is given careful attention, so not every commission can be accepted. Please include a budget, timeline, as many details as possible, and<br>
-              an inspiration photograph with your request,<br>
-              all of which will be kept confidential.<br>
-              Should you be open to me sharing your commission on my socials,<br>
-              you will receive 15% off.<br>
-              If you are also happy for your piece to live on as a limited edition print for others to collect,<br>
-              you will receive a further 15% off.</p>
-            <p>Some of them are waiting for you…</p>
           </div>
 
           <form class="form form--enquiry" action="https://formspree.io/f/mjygnazv" method="POST">
@@ -86,17 +74,22 @@
                  The painting lists are filled in from script.js. -->
             <fieldset class="detail" data-for="Original painting" hidden disabled>
               <legend class="visually-hidden">Which original painting</legend>
-              <label class="visually-hidden" for="m-original">Which original painting</label>
+              <p class="detail__text">Each original is one of a kind,<br>
+                painted by hand using fine oil paints.<br>
+                Once it finds its home, it belongs to you alone.<br>
+                Some of them are waiting for you…</p>
+              <label class="visually-hidden" for="m-original">Painting name</label>
               <select id="m-original" name="original_painting" data-paintings="originals" required>
-                <option value="">Which original painting?</option>
+                <option value="">Painting name</option>
               </select>
             </fieldset>
 
             <fieldset class="detail" data-for="Print" hidden disabled>
               <legend class="visually-hidden">Which print</legend>
-              <label class="visually-hidden" for="m-print">Print of which painting</label>
+              <p class="detail__text">Prints are limited to an edition of ten small and four large per painting, exact dimensions vary, each one signed.</p>
+              <label class="visually-hidden" for="m-print">Painting name</label>
               <select id="m-print" name="print_of" data-paintings="all" required>
-                <option value="">Print of which painting?</option>
+                <option value="">Painting name</option>
               </select>
               <div class="choice__options" role="radiogroup" aria-label="Print size">
                 <label class="choice__pill"><input type="radio" name="print_size" value="Small" required><span>Small</span></label>
@@ -106,6 +99,10 @@
 
             <fieldset class="detail commission" data-for="Commission" hidden disabled>
               <legend class="form__legend">Your commission</legend>
+              <p class="detail__text">For commissions, each piece is given careful attention, so not every commission can be accepted.<br>
+                Please include a budget, timeline, as many details as possible, and<br>
+                an inspiration photograph with your request,<br>
+                all of which will be kept confidential.</p>
               <label class="visually-hidden" for="m-description">Description of the piece you have in mind</label>
               <textarea id="m-description" name="commission_description" rows="4" placeholder="Description of the piece you have in mind"></textarea>
               <label class="visually-hidden" for="m-size">Desired size</label>
@@ -127,8 +124,17 @@
               <!-- Shown while uploads are switched off -->
               <p class="upload-off upload__note">Once I reply, you can send your inspiration photo by email. Inspiration photos are kept confidential.</p>
 
-              <label class="check"><input type="checkbox" name="share_on_socials" value="Yes"><span>I’m happy for my commission to be shared on Phren Lhantom’s socials (15% off)</span></label>
-              <label class="check"><input type="checkbox" name="offer_as_print" value="Yes"><span>I’m happy for my commission to be offered as a limited edition print to be sold to others (a further 15% off)</span></label>
+              <!-- Discount questions, answered with a switch -->
+              <label class="toggle">
+                <span class="toggle__text">Would you be open to me sharing your commission on my socials, with a photograph of the finished piece? You will receive 15% off.</span>
+                <input class="toggle__input" type="checkbox" role="switch" name="share_on_socials" value="Yes">
+                <span class="toggle__switch" aria-hidden="true"></span>
+              </label>
+              <label class="toggle">
+                <span class="toggle__text">Would you also be happy for your piece to live on as a limited edition print for others to collect? You will receive a further 25% off, 40% off in all.</span>
+                <input class="toggle__input" type="checkbox" role="switch" name="offer_as_print" value="Yes">
+                <span class="toggle__switch" aria-hidden="true"></span>
+              </label>
             </fieldset>
 
             <button type="submit">Send</button>
