@@ -13,7 +13,7 @@
   /* The name, section titles and watermark */
   --script: 'Pinyon Script', cursive;
   /* About, Contact intro and the menu: a flourished script with swash capitals */
-  --prose-font: 'Mea Culpa', 'Petit Formal Script', cursive;
+  --prose-font: 'Imperial Script', 'Pinyon Script', cursive;
   /* Small working text (form, captions, footer): a calmer copperplate script */
   --body-font: 'Petit Formal Script', 'Snell Roundhand', 'Apple Chancery', cursive;
 
@@ -25,8 +25,12 @@
   /* About and Contact text: larger, and lit like candlelight along each line.
      The gradient repeats once per line, so the middle of every letter is bright
      and the long upper and lower flourishes fade away. */
-  --prose-size: clamp(31px, 2.9vw, 38px);
+  --prose-size: clamp(32px, 3vw, 40px);
   --prose-line: 1.6em;
+  /* The same lighting as a mask, for the shimmering name */
+  --letter-fade: linear-gradient(to bottom,
+    rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, .35) 30%, #000 47%,
+    #000 66%, rgba(0, 0, 0, .35) 82%, rgba(0, 0, 0, .35) 100%);
   --prose-fade: linear-gradient(to bottom,
     rgba(216, 213, 207, .28) 0%,
     rgba(216, 213, 207, .28) 30%,
@@ -275,10 +279,11 @@ input, textarea { cursor: text; }
 
 .hero__name {
   margin: 0;
-  font-family: var(--script);
+  font-family: var(--prose-font);
   font-weight: 400;
-  font-size: clamp(30px, 9.3vw, 118px);
-  line-height: 1.1;
+  font-size: clamp(42px, 12vw, 140px);
+  line-height: 1.6;
+  word-spacing: .12em;
   background: linear-gradient(100deg,
     rgba(220, 217, 211, .25) 0%,
     rgba(240, 238, 234, .95) 25%,
@@ -291,6 +296,9 @@ input, textarea { cursor: text; }
   color: transparent;
   will-change: transform, opacity;
   animation: haunt 7s ease-in-out infinite, shimmer 14s linear infinite;
+  /* Bright through the middle of the letters, the tall loops and tails fade */
+  -webkit-mask-image: var(--letter-fade);
+  mask-image: var(--letter-fade);
 }
 
 /* ---------- Section titles ---------- */
@@ -325,23 +333,9 @@ input, textarea { cursor: text; }
 }
 .script-title::before { transform: scaleX(-1); }
 
-/* The same swirls either side of the name, a touch smaller relative to it */
-.hero__name {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(6px, 1.5vw, 22px);
-}
-.hero__name::before,
-.hero__name::after {
-  content: '';
-  flex: none;
-  width: clamp(40px, 11vw, 200px);
-  height: .32em;
-  background: var(--flourish) center / contain no-repeat;
-  opacity: .6;
-}
-.hero__name::before { transform: scaleX(-1); }
+/* No swirls beside About: the paragraph's own flourishes are enough */
+#about-title::before,
+#about-title::after { content: none; }
 .script-title--tight { margin-bottom: 8px; }
 
 /* ---------- About ---------- */
@@ -357,6 +351,7 @@ input, textarea { cursor: text; }
   font-family: var(--prose-font);
   font-size: var(--prose-size);
   line-height: var(--prose-line);
+  word-spacing: .12em;
   /* Bright middle of each line, faded loops above and below */
   background: var(--prose-fade) 0 0 / 100% var(--prose-line) repeat-y;
   -webkit-background-clip: text;
@@ -647,6 +642,7 @@ input, textarea { cursor: text; }
   font-family: var(--prose-font);
   font-size: var(--prose-size);
   line-height: var(--prose-line);
+  word-spacing: .12em;
   /* Bright middle of each line, faded loops above and below */
   background: var(--prose-fade) 0 0 / 100% var(--prose-line) repeat-y;
   -webkit-background-clip: text;
@@ -926,5 +922,7 @@ input, textarea { cursor: text; }
     background: none;
     color: CanvasText;
     filter: none;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 }
