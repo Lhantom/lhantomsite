@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2026-10-25h">
+  <link rel="stylesheet" href="styles.css?v=2026-10-25i">
   <script>document.documentElement.classList.add('js');</script>
-  <script src="script.js?v=2026-10-25h" defer></script>
+  <script src="script.js?v=2026-10-25i" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -105,10 +105,11 @@
             <fieldset class="detail commission" data-for="Commission" hidden disabled>
               <legend class="visually-hidden">Your commission</legend>
               <p class="detail__text">For commissions, each piece is given careful attention, so not every commission can be accepted.<br>
-                Please include a budget, timeline, as many details as possible, and<br>
-                an inspiration photograph with&nbsp;your&nbsp;request,<br>
-                all of which will be kept confidential.<br>
-                A quote will be sent to you before your commission is confirmed and approved.</p>
+                Please include a budget, timeline and as many details as possible.<br>
+                Should your commission be approved, I will ask for an inspiration photograph,<br>
+                which you can send by email and which will be kept confidential.<br>
+                A quote will be sent to you in that email.<br>
+                Every enquiry receives a reply, whether or not the commission is approved.</p>
               <label class="visually-hidden" for="m-description">Description of the piece you have in mind</label>
               <textarea id="m-description" name="commission_description" rows="4" placeholder="Description of the piece you have in mind"></textarea>
               <label class="visually-hidden" for="m-size">Desired size</label>
@@ -127,20 +128,21 @@
                 </div>
                 <p class="upload__note">Inspiration photos are kept confidential. JPG, PNG or HEIC, up to 10 MB.</p>
               </div>
-              <!-- Shown while uploads are switched off -->
-              <p class="upload-off upload__note">Once I reply, you can send your inspiration photo by email. Inspiration photos are kept confidential.</p>
 
               <!-- Discount questions, answered with a switch -->
               <label class="toggle">
-                <span class="toggle__text">Would you be open to me sharing your commission on my socials, with a photograph of the finished piece? You will receive 15% off.</span>
+                <span class="toggle__text">Would you be open to me sharing your commission on my socials, with a photograph of the finished piece?
+                  <strong class="toggle__offer">You&nbsp;will&nbsp;receive&nbsp;15%&nbsp;off.</strong></span>
                 <input class="toggle__input" type="checkbox" role="switch" name="share_on_socials" value="Yes">
                 <span class="toggle__switch" aria-hidden="true"></span>
               </label>
               <label class="toggle">
-                <span class="toggle__text">Would you also be happy for your piece to live on as a limited edition print for others to collect? You will receive a further 25% off, 40% off in all.</span>
+                <span class="toggle__text">Would you also be happy for your piece to live on as a limited edition print for others to collect?
+                  <strong class="toggle__offer">You&nbsp;will&nbsp;receive&nbsp;25%&nbsp;off.</strong></span>
                 <input class="toggle__input" type="checkbox" role="switch" name="offer_as_print" value="Yes">
                 <span class="toggle__switch" aria-hidden="true"></span>
               </label>
+              <p class="detail__text">(Should you accept both, you will receive 40% off.)</p>
             </fieldset>
 
             <button type="submit">Send</button>

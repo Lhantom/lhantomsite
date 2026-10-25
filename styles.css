@@ -807,6 +807,12 @@ input, textarea { cursor: text; }
   -webkit-mask: var(--letter-fade) 0 0 / 100% var(--prose-line) repeat-y;
   mask: var(--letter-fade) 0 0 / 100% var(--prose-line) repeat-y;
 }
+/* The discount itself, on its own line and drawn a little bolder */
+.toggle__offer {
+  display: block;
+  font-weight: inherit;
+  -webkit-text-stroke: .5px currentColor;
+}
 .toggle__input {
   position: absolute;
   opacity: 0;

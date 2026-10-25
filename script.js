@@ -272,7 +272,7 @@ function setUpEnquiryForm() {
     upload.remove();
     return;
   }
-  uploadOff.remove();
+  uploadOff?.remove();
   form.enctype = 'multipart/form-data';
 
   file.addEventListener('change', () => {
