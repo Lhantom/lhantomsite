@@ -22,6 +22,19 @@
   --text-size: clamp(27px, 2.5vw, 31px);
   --text-color: rgba(216, 213, 207, .62);
 
+  /* About and Contact text: larger, and lit like candlelight along each line.
+     The gradient repeats once per line, so the middle of every letter is bright
+     and the long upper and lower flourishes fade away. */
+  --prose-size: clamp(31px, 2.9vw, 38px);
+  --prose-line: 1.6em;
+  --prose-fade: linear-gradient(to bottom,
+    rgba(216, 213, 207, .28) 0%,
+    rgba(216, 213, 207, .28) 30%,
+    rgba(240, 238, 234, .95) 47%,
+    rgba(240, 238, 234, .95) 66%,
+    rgba(216, 213, 207, .28) 82%,
+    rgba(216, 213, 207, .28) 100%);
+
   /* Hand-drawn swirl beside each section title (drawn for the right side, mirrored on the left) */
   --flourish: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 40'%3E%3Cpath d='M2 22C30 22 50 10 72 16C90 21 96 34 84 34C74 34 76 20 92 16C112 11 132 20 146 18C154 17 158 12 154 9C150 6 145 11 149 13' fill='none' stroke='%23ece9e3' stroke-width='1.1' stroke-linecap='round'/%3E%3Cpath d='M40 18C52 6 66 4 70 9' fill='none' stroke='%23ece9e3' stroke-width='.8' stroke-linecap='round'/%3E%3Ccircle cx='71' cy='10' r='1.3' fill='%23ece9e3'/%3E%3C/svg%3E");
 
@@ -311,6 +324,24 @@ input, textarea { cursor: text; }
   opacity: .65;
 }
 .script-title::before { transform: scaleX(-1); }
+
+/* The same swirls either side of the name, a touch smaller relative to it */
+.hero__name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1.5vw, 22px);
+}
+.hero__name::before,
+.hero__name::after {
+  content: '';
+  flex: none;
+  width: clamp(40px, 11vw, 200px);
+  height: .32em;
+  background: var(--flourish) center / contain no-repeat;
+  opacity: .6;
+}
+.hero__name::before { transform: scaleX(-1); }
 .script-title--tight { margin-bottom: 8px; }
 
 /* ---------- About ---------- */
@@ -324,9 +355,13 @@ input, textarea { cursor: text; }
 .about p {
   margin: 0;
   font-family: var(--prose-font);
-  font-size: var(--text-size);
-  line-height: 1.55;
-  color: var(--text-color);
+  font-size: var(--prose-size);
+  line-height: var(--prose-line);
+  /* Bright middle of each line, faded loops above and below */
+  background: var(--prose-fade) 0 0 / 100% var(--prose-line) repeat-y;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   text-wrap: pretty;
 }
 
@@ -610,9 +645,13 @@ input, textarea { cursor: text; }
 .form-section__intro p {
   margin: 0;
   font-family: var(--prose-font);
-  font-size: var(--text-size);
-  line-height: 1.55;
-  color: var(--text-color);
+  font-size: var(--prose-size);
+  line-height: var(--prose-line);
+  /* Bright middle of each line, faded loops above and below */
+  background: var(--prose-fade) 0 0 / 100% var(--prose-line) repeat-y;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   text-wrap: pretty;
 }
 .form-section__intro p + p { margin-top: 1em; }
@@ -881,7 +920,9 @@ input, textarea { cursor: text; }
 
 @media (forced-colors: active) {
   .hero__name,
-  .script-title {
+  .script-title,
+  .about p,
+  .form-section__intro p {
     background: none;
     color: CanvasText;
     filter: none;
