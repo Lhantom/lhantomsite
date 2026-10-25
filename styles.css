@@ -26,9 +26,8 @@
      The fade repeats once per line, so the middle of every letter is bright
      and the long upper and lower flourishes fade away. */
   --prose-size: clamp(35px, 3.3vw, 44px);
-  /* Soft, faded ink; a hairline outline thickens the thin strokes */
+  /* Soft, faded ink */
   --prose-color: rgba(226, 223, 217, .68);
-  --prose-weight: .45px;
   --prose-line: 1.6em;
   /* The same lighting as a mask, for the shimmering name */
   --letter-fade: linear-gradient(to bottom,
@@ -332,7 +331,6 @@ input, textarea { cursor: text; }
   /* Bright middle of each line, faded loops above and below:
      the fade repeats once per line as a mask */
   color: var(--prose-color);
-  -webkit-text-stroke: var(--prose-weight) var(--prose-color);
   -webkit-mask: var(--letter-fade) 0 0 / 100% var(--prose-line) repeat-y;
   mask: var(--letter-fade) 0 0 / 100% var(--prose-line) repeat-y;
   text-wrap: pretty;
@@ -947,6 +945,5 @@ input, textarea { cursor: text; }
     mask-image: none;
     -webkit-mask: none;
     mask: none;
-    -webkit-text-stroke: 0;
   }
 }
