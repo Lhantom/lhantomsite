@@ -10,12 +10,10 @@
   --field-fill: rgba(255, 255, 255, .025);
   --button-bg: rgba(236, 233, 227, .9);
 
-  /* The name, section titles and watermark */
-  --script: 'Pinyon Script', cursive;
-  /* About, Contact intro and the menu: a flourished script with swash capitals */
-  --prose-font: 'Imperial Script', 'Pinyon Script', cursive;
-  /* Small working text (form, captions, footer): a calmer copperplate script */
-  --body-font: 'Petit Formal Script', 'Snell Roundhand', 'Apple Chancery', cursive;
+  /* One romantic script for every word on the site (name, titles, text, menu, form, footer) */
+  --script: 'Imperial Script', cursive;
+  --prose-font: var(--script);
+  --body-font: var(--script);
 
   /* About, Contact intro and the menu share one size and brightness
      (large enough to read comfortably in a script font, faded like a whisper) */
@@ -53,6 +51,8 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--body-font);
+  /* This script sets words close together; open them up a little */
+  word-spacing: .12em;
   /* No fake italics or bold on the script font */
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
@@ -329,9 +329,11 @@ input, textarea { cursor: text; }
 }
 .script-title::before { transform: scaleX(-1); }
 
-/* No swirls beside About: the paragraph's own flourishes are enough */
+/* No swirls beside About or Contact */
 #about-title::before,
-#about-title::after { content: none; }
+#about-title::after,
+#contact-title::before,
+#contact-title::after { content: none; }
 .script-title--tight { margin-bottom: 8px; }
 
 /* ---------- About ---------- */
@@ -842,6 +844,7 @@ input, textarea { cursor: text; }
 
 /* ---------- Footer ---------- */
 
+.footer__icon { display: inline-flex; align-items: center; }
 .footer {
   display: flex;
   justify-content: center;
@@ -849,7 +852,7 @@ input, textarea { cursor: text; }
   gap: 12px 32px;
   padding: 32px var(--pagepad) 40px;
   font-size: 16px;
-  font-style: italic;
+  align-items: center;
   opacity: .5;
 }
 
@@ -859,6 +862,7 @@ input, textarea { cursor: text; }
   .nav { padding-top: 16px; padding-bottom: 16px; }
   /* Tighter gaps so the Instagram icon stays on the same line as the links */
   .nav__links { gap: 0 20px; }
+  .footer { gap: 4px 20px; }
   /* 44px tap targets */
   .nav__links a,
   .footer a {
@@ -893,6 +897,37 @@ input, textarea { cursor: text; }
 
 /* ---------- Reduced motion ---------- */
 
+/* ---------- Small text in the script font ---------- */
+
+/* The script has a small x-height, so small text is scaled up to read clearly */
+.form,
+.footer,
+.cta,
+.piece__caption,
+.lightbox__caption,
+.piece__placeholder { font-size-adjust: .5; }
+
+/* ---------- Ghostly fade: words breathe in and out like the name ---------- */
+
+/* Everything except the menu and the form fields */
+.script-title,
+.about p,
+.form-section__intro p,
+.form__legend,
+.choice__pill span,
+.form button,
+.cta__link,
+.footer,
+.watermark,
+.piece__caption,
+.lightbox__caption {
+  animation: ghost 7s ease-in-out infinite;
+}
+@keyframes ghost {
+  0%, 100% { filter: opacity(.5) blur(.4px); }
+  50%      { filter: opacity(1) blur(0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .fog,
@@ -908,6 +943,17 @@ input, textarea { cursor: text; }
   .halo,
   .tap-light { display: none !important; }
   .lightbox[open] { animation: none; }
+  .script-title,
+  .about p,
+  .form-section__intro p,
+  .form__legend,
+  .choice__pill span,
+  .form button,
+  .cta__link,
+  .footer,
+  .watermark,
+  .piece__caption,
+  .lightbox__caption { animation: none; }
 }
 
 /* ---------- Windows high-contrast mode ---------- */
