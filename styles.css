@@ -17,7 +17,9 @@
 
   /* About, Contact intro and the menu share one size and brightness
      (large enough to read comfortably in a script font, faded like a whisper) */
-  --text-size: clamp(27px, 2.5vw, 31px);
+  --text-size: clamp(32px, 3vw, 38px);
+  /* Everything in the contact form matches the Contact paragraph size */
+  --form-size: var(--prose-size);
   --text-color: rgba(216, 213, 207, .62);
 
   /* About and Contact text: larger, and lit like candlelight along each line.
@@ -33,8 +35,6 @@
     rgba(0, 0, 0, .35) 0%, rgba(0, 0, 0, .35) 30%, #000 47%,
     #000 66%, rgba(0, 0, 0, .35) 82%, rgba(0, 0, 0, .35) 100%);
 
-  /* Hand-drawn swirl beside each section title (drawn for the right side, mirrored on the left) */
-  --flourish: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 40'%3E%3Cpath d='M2 22C30 22 50 10 72 16C90 21 96 34 84 34C74 34 76 20 92 16C112 11 132 20 146 18C154 17 158 12 154 9C150 6 145 11 149 13' fill='none' stroke='%23ece9e3' stroke-width='1.1' stroke-linecap='round'/%3E%3Cpath d='M40 18C52 6 66 4 70 9' fill='none' stroke='%23ece9e3' stroke-width='.8' stroke-linecap='round'/%3E%3Ccircle cx='71' cy='10' r='1.3' fill='%23ece9e3'/%3E%3C/svg%3E");
 
   --pagepad: clamp(24px, 7vw, 96px);
   --focus-ring: 1px solid rgba(236, 233, 227, .7);
@@ -312,28 +312,7 @@ input, textarea { cursor: text; }
   background-clip: text;
   color: transparent;
   filter: blur(.3px);
-  /* Swirls either side of the word */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(8px, 1.5vw, 18px);
 }
-.script-title::before,
-.script-title::after {
-  content: '';
-  flex: none;
-  width: clamp(56px, 13vw, 150px);
-  height: .5em;
-  background: var(--flourish) center / contain no-repeat;
-  opacity: .65;
-}
-.script-title::before { transform: scaleX(-1); }
-
-/* No swirls beside About or Contact */
-#about-title::before,
-#about-title::after,
-#contact-title::before,
-#contact-title::after { content: none; }
 .script-title--tight { margin-bottom: 8px; }
 
 /* ---------- About ---------- */
@@ -645,7 +624,6 @@ input, textarea { cursor: text; }
   /* Bright middle of each line, faded loops above and below:
      the fade repeats once per line as a mask */
   color: var(--prose-color);
-  -webkit-text-stroke: var(--prose-weight) var(--prose-color);
   -webkit-mask: var(--letter-fade) 0 0 / 100% var(--prose-line) repeat-y;
   mask: var(--letter-fade) 0 0 / 100% var(--prose-line) repeat-y;
   text-wrap: pretty;
@@ -666,7 +644,7 @@ input, textarea { cursor: text; }
   border-radius: 999px;
   background: var(--field-fill);
   padding: 14px 22px;
-  font-size: 18px;
+  font-size: var(--form-size);
   outline: none;
   transition: border-color .6s ease, box-shadow .6s ease;
 }
@@ -706,7 +684,7 @@ input, textarea { cursor: text; }
   padding: 14px 44px;
   background: var(--button-bg);
   color: var(--bg);
-  font-size: 19px;
+  font-size: var(--form-size);
   font-style: italic;
   box-shadow: 0 0 40px rgba(236, 233, 227, .12);
   transition: box-shadow .8s ease, background .8s ease;
@@ -736,7 +714,7 @@ input, textarea { cursor: text; }
 .form__legend {
   padding: 0;
   margin-bottom: 12px;
-  font-size: 19px;
+  font-size: var(--form-size);
   font-style: italic;
   opacity: .8;
 }
@@ -764,7 +742,7 @@ input, textarea { cursor: text; }
   border: 1px solid var(--field-border);
   border-radius: 999px;
   background: var(--field-fill);
-  font-size: 17px;
+  font-size: var(--form-size);
   transition: border-color .6s ease, background .6s ease, color .6s ease;
 }
 .choice__pill:hover span { border-color: var(--field-border-focus); }
@@ -789,20 +767,20 @@ input, textarea { cursor: text; }
   padding: 10px 22px;
   border: 1px dashed var(--field-border-focus);
   border-radius: 999px;
-  font-size: 17px;
+  font-size: var(--form-size);
   font-style: italic;
   transition: background .6s ease;
 }
 .upload__button:hover { background: rgba(236, 233, 227, .06); }
 .upload:focus-within .upload__button { outline: var(--focus-ring); outline-offset: 3px; }
 .upload__name {
-  font-size: 16px;
+  font-size: var(--form-size);
   opacity: .8;
   overflow-wrap: anywhere;
 }
 .upload__note {
   margin: 8px 0 0;
-  font-size: 16px;
+  font-size: var(--form-size);
   font-style: italic;
   line-height: 1.5;
   opacity: .8;
@@ -814,7 +792,7 @@ input, textarea { cursor: text; }
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  font-size: 17px;
+  font-size: var(--form-size);
   line-height: 1.45;
 }
 .check input {
@@ -829,7 +807,7 @@ input, textarea { cursor: text; }
   margin: 0;
   min-height: 1em;
   text-align: center;
-  font-size: 18px;
+  font-size: var(--form-size);
   font-style: italic;
 }
 .form__status:empty { display: none; }
@@ -837,7 +815,7 @@ input, textarea { cursor: text; }
 .form-thanks {
   margin: 0;
   text-align: center;
-  font-size: 21px;
+  font-size: var(--form-size);
   font-style: italic;
   color: var(--bright);
 }
@@ -900,7 +878,6 @@ input, textarea { cursor: text; }
 /* ---------- Small text in the script font ---------- */
 
 /* The script has a small x-height, so small text is scaled up to read clearly */
-.form,
 .footer,
 .cta,
 .piece__caption,
